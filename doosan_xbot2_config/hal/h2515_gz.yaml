@@ -1,0 +1,4 @@
+xbotcore_devices:
+    joint_gz:
+        names: []
+        thread: rt_main

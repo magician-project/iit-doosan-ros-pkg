@@ -1,0 +1,40 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://ros.org/wiki/xacro" name="centauro">
+
+    <xacro:include filename="$(find doosan_urdf)/urdf/h2515.urdf.xacro" />
+
+    <gazebo>
+        <plugin
+            filename="xbot2_gz_joint_server"
+            name="gz::sim::systems::GzJointServer">
+
+            <!-- as example  -->
+            <!-- <ignored_joints>
+                <joint name="does_not_exist_1" />
+                <joint name="does_not_exist_2" />
+            </ignored_joints> -->
+
+            <profile name="small_mot"  p="500"  d="5"/>
+            <profile name="medium_mot" p="1000" d="10"/>
+            <profile name="big_mot"    p="3000" d="20"/>
+
+            <pid name="joint_1" profile="big_mot"/>
+            <pid name="joint_2" profile="big_mot"/>
+            <pid name="joint_3" profile="big_mot"/>
+            <pid name="joint_4" profile="medium_mot"/>
+            <pid name="joint_5" profile="small_mot"/>
+            <pid name="joint_6" profile="small_mot"/>
+           
+            <initial_configuration>
+                <joint name="joint_1" value="0"/>
+                <joint name="joint_2" value="0"/>
+                <joint name="joint_3" value="0"/>
+                <joint name="joint_4" value="0"/>
+                <joint name="joint_5" value="0"/>
+                <joint name="joint_6" value="0"/>                
+            </initial_configuration>
+
+        </plugin>
+    </gazebo>
+
+</robot>
