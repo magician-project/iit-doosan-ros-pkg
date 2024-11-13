@@ -1,5 +1,6 @@
 <?xml version="1.0"?>
-<!-- Main doosan h2515 xacro modified because we do not want ros control neither gazebo default plugin (we will use xbot stuff) -->
+<!-- Main doosan h2515 xacro. All doosan files are copy pasted in this repo with modification to remove ros control and gazebo plugins stuff,
+    since xbot will be used -->
 <robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="h2515" >
 
   <xacro:arg name="color"   default="white"/>
@@ -12,10 +13,10 @@
   <xacro:property name="gz" value="$(arg use_gazebo)"/>
   
   <xacro:if value="${cr == 'white'}">
-     <xacro:include filename="$(find dsr_description2)/xacro/macro.h2515.white.xacro" />
+     <xacro:include filename="$(find doosan_urdf)/urdf/macro.h2515.white.xacro" />
   </xacro:if>
   <xacro:if value="${cr == 'blue'}">
-     <xacro:include filename="$(find dsr_description2)/xacro/macro.h2515.blue.xacro" />
+     <xacro:include filename="$(find doosan_urdf)/urdf/macro.h2515.blue.xacro" />
   </xacro:if>
   <xacro:h2515 namespace="$(arg namespace)"/>
 

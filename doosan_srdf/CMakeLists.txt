@@ -5,7 +5,7 @@ find_package(ament_cmake REQUIRED)
 
 # mark srdf for installation
 install(DIRECTORY srdf
-  DESTINATION share/${PROJECT_NAME}/srdf
+  DESTINATION share/${PROJECT_NAME}
 )
 
 ament_package()

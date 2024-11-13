@@ -24,12 +24,12 @@ if(BUILD_TESTING)
 endif()
 
 install(DIRECTORY urdf
-  DESTINATION share/${PROJECT_NAME}/urdf)
+  DESTINATION share/${PROJECT_NAME})
 
 install(DIRECTORY launch
-  DESTINATION share/${PROJECT_NAME}/launch)
+  DESTINATION share/${PROJECT_NAME})
 
 install(DIRECTORY world
-  DESTINATION share/${PROJECT_NAME}/world)
+  DESTINATION share/${PROJECT_NAME})
 
 ament_package()

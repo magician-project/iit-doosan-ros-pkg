@@ -1,0 +1,6 @@
+<launch>
+
+    <node pkg="rviz2" exec="rviz2" name="rviz2" output="screen" args="-d $(find-pkg-share doosan_urdf)/rviz/h2515_rviz.rviz">
+    </node> 
+
+</launch>
