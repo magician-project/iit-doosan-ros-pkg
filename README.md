@@ -2,7 +2,10 @@
 Models for the doosan robot integrated in xbot2 ROS2 version humble
 
 ### How to Install / Setup
-- Install xbot dependecies (`ros-humble-srdfdom`, `ros-humble-geometric-shapes`)
+- Install xbot dependecies 
+  - `sudo apt install -y ros-humble-srdfdom ros-humble-geometric-shapes`
+- Install CartesI/O dependencies
+  - `sudo apt install -y ros-humble-moveit-msgs`
 - Install xbot from binaries, TODO
 - Clone this repo, models and meshes are here so no need for the official doosan robot repo
 
