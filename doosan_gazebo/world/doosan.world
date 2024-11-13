@@ -1,57 +1,42 @@
 <?xml version="1.0" ?>
-<!--
-  Gazebo sensor demo for sensors that do not require rendering.
-
-  Listen to sensor readings:
-
-    Altimeter: gz topic -e -t /altimeter
-    Imu: gz topic -e -t /imu
-    Magnetometer: gz topic -e -t /magnetometer
-    Air pressure: gz topic -e -t /air_pressure
--->
-<sdf version="1.6">
-  <world name="default">
+<sdf version="1.9">
+  <world name="doosan_world">
     <physics name="1ms" type="ignored">
       <max_step_size>0.001</max_step_size>
       <real_time_factor>1.0</real_time_factor>
     </physics>
     <plugin
-      filename="gz-sim-physics-system"
-      name="gz::sim::systems::Physics">
+      filename="ignition-gazebo-physics-system"
+      name="ignition::gazebo::systems::Physics">
     </plugin>
     <plugin
-      filename="gz-sim-air-pressure-system"
-      name="gz::sim::systems::AirPressure">
+        filename="ignition-gazebo-scene-broadcaster-system"
+        name="ignition::gazebo::systems::SceneBroadcaster">
     </plugin>
     <plugin
-      filename="gz-sim-altimeter-system"
-      name="gz::sim::systems::Altimeter">
-    </plugin>
-    <plugin
-      filename="gz-sim-imu-system"
-      name="gz::sim::systems::Imu">
-    </plugin>
-    <plugin
-      filename="gz-sim-sensors-system"
-      name="gz::sim::systems::Sensors">
+      filename="libignition-gazebo-sensors-system.so"
+      name="ignition::gazebo::systems::Sensors">
       <render_engine>ogre2</render_engine>
     </plugin>
-    <plugin
-      filename="gz-sim-magnetometer-system"
-      name="gz::sim::systems::Magnetometer">
+
+    <plugin filename="libignition-gazebo-imu-system.so"
+            name="ignition::gazebo::systems::Imu">
     </plugin>
     <plugin
-      filename="gz-sim-forcetorque-system"
-      name="gz::sim::systems::ForceTorque">
+      filename="libignition-gazebo-magnetometer-system"
+      name="ignition::gazebo::systems::Magnetometer">
     </plugin>
     <plugin
-      filename="gz-sim-user-commands-system"
-      name="gz::sim::systems::UserCommands">
+      filename="libignition-gazebo-forcetorque-system"
+      name="ignition::gazebo::systems::ForceTorque">
     </plugin>
+    <!-- Necessary for spawining robot even from the launch-->
     <plugin
-      filename="gz-sim-scene-broadcaster-system"
-      name="gz::sim::systems::SceneBroadcaster">
+      filename="libignition-gazebo-user-commands-system"
+      name="ignition::gazebo::systems::UserCommands">
     </plugin>
+
+    <plugin name="gz::sim::systems::GzClockPlugin" filename="xbot2_gz_clock"/>
 
     <light type="directional" name="sun">
       <cast_shadows>true</cast_shadows>
