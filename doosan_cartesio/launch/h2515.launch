@@ -1,0 +1,52 @@
+<?xml version="1.0"?>
+<launch>
+
+    <arg name="ci_rviz" default="false" />
+    <arg name="gdb" default="false" />
+    <!-- <let if="$(var gdb)" name="prefix" value="gdb -ex run arg"/> -->
+    <let if="$(var gdb)" name="prefix" value="xterm -e gdb --args"/>
+    <let unless="$(var gdb)" name="prefix" value=""/>
+    <arg name="markers" default="false"/>
+
+    <arg name="rate" default="100.0"/>
+
+    <arg name="solver" default="OpenSot"/>
+    <arg name="tf_prefix" default="ci"/>
+    <arg name="namespace" default="/"/>
+    <arg name="is_model_floating_base" default="false"/>
+    <arg name="world_frame_link" default="world"/>
+    <arg name="enable_otg" default="true"/>
+    <arg name="problem_description_filename" default="$(find-pkg-share doosan_cartesio)/config/h2515.yaml"/>
+
+
+    <node pkg="cartesian_interface" exec="ros_server_node"
+                                    name="ros_server_node"
+                                    output="screen"
+                                    launch-prefix="$(var prefix)">
+        <remap from="robot_description" to="/xbotcore/robot_description"/>
+        <remap from="robot_description_semantic" to="/xbotcore/robot_description_semantic"/>
+
+        <param name="enable_otg" value="$(var enable_otg)"/>
+        <param name="is_model_floating_base" value="$(var is_model_floating_base)"/>
+        <param name="model_type" value="pin"/>
+        <param name="solver" value="$(var solver)"/>
+        <param name="use_xbot_config" value="false"/>
+        <param name="rate" value="$(var rate)"/>
+        <param name="tf_prefix" value="$(var tf_prefix)"/>
+        <param name="world_frame_link" value="$(var world_frame_link)"/>
+        <param name="problem_description" type="str" value="$(command 'cat $(var problem_description_filename)')"/>
+    </node>
+
+    <node if="$(var markers)" pkg="cartesian_interface" exec="marker_spawner" name="interactive_markers" output="screen">
+        <param name="tf_prefix" value="$(var tf_prefix)"/>
+        <remap from="robot_description" to="/xbotcore/robot_description"/>
+        <remap from="robot_description_semantic" to="/xbotcore/robot_description_semantic"/>
+    </node>
+
+    <node if="$(var ci_rviz)" pkg="rviz2" exec="rviz2" name="rviz2" output="screen" args="-d $(find-pkg-share doosan_cartesio)/rviz/h2515_rviz.rviz">
+    </node> 
+
+
+
+
+</launch>
