@@ -14,7 +14,7 @@ Models for the doosan robot integrated in xbot2 ROS2 version humble
 - Select a xbot config file, `set_xbot2_config src/iit-doosan-ros-pkg/doosan_xbot2_config/h2515_xbot.yaml`
 
 ### Docker Version
-A docker is available, TODO
+Check [docker folder](docker)
 
 ### How to Use
 #### RViz only (no dynamic)
