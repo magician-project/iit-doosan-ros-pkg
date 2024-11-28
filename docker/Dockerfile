@@ -43,8 +43,8 @@ RUN sudo apt-get update && sudo apt-get install -y \
 
 
 # Clone Doosan model
-RUN mkdir -p ~/ws/src && \
-    cd ws/src && \
+RUN mkdir -p ~/ros_ws/src && \
+    cd ros_ws/src && \
     git clone https://github.com/magician-project/iit-doosan-ros-pkg $$ \
     cd .. && colcon build
 
@@ -56,6 +56,7 @@ SHELL [ "/bin/bash", "-ic" ]
 
 # source ros and xbot
 RUN echo source /opt/ros/$ROS_DISTRO/setup.bash >> /home/user/.bashrc
+RUN echo source /home/user/ws/install/setup.bash >> /home/user/.bashrc
 RUN echo source /opt/xbot/setup.bash >> /home/user/.bashrc
 
 # ros2 configuration (cyclonedds, custom sysctl rules, ...)

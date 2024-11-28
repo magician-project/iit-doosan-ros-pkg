@@ -9,11 +9,11 @@
     </group>
     
     <group_state group="chains" name="home">
-        <joint name="joint_1" value="0.5"/>
-        <joint name="joint_2" value="0.1"/>
-        <joint name="joint_3" value="0.5"/>
-        <joint name="joint_4" value="0.4"/>
-        <joint name="joint_5" value="0.2"/>
+        <joint name="joint_1" value="0.0"/>
+        <joint name="joint_2" value="0.29"/>
+        <joint name="joint_3" value="1.21"/>
+        <joint name="joint_4" value="0"/>
+        <joint name="joint_5" value="0"/>
         <joint name="joint_6" value="0"/>
     </group_state>
     

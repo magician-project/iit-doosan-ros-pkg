@@ -32,6 +32,6 @@ Check [docker folder](docker)
 2) Terminal 2: `xbot2_gui`
 
 #### CartesI/O ros_node
-1) ros2 launch doosan_cartesio h2515.launch #ci_rviz:=true markers:=true
+1) `ros2 launch doosan_cartesio h2515.launch #ci_rviz:=true markers:=true`
 
 
