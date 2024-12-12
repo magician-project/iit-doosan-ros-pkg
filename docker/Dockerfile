@@ -39,10 +39,13 @@ RUN sudo apt-get update && sudo apt-get install -y \
     && sudo rm -rf /var/lib/apt/lists/*
 
 
-#install xbot binaries TODO
+# Install xbot binaries
+RUN sudo sh -c 'echo "deb http://xbot.cloud/xbot2-nightly/ubuntu/$(lsb_release -sc) /" > /etc/apt/sources.list.d/xbot-latest.list'
+    wget -q -O - http://xbot.cloud/xbot2-nightly/ubuntu/KEY.gpg | sudo apt-key add -
+    sudo apt update
+    sudo apt install xbot2_desktop_full
 
-
-# Clone Doosan model
+# Clone and build Doosan model
 RUN mkdir -p ~/ros_ws/src && \
     cd ros_ws/src && \
     git clone https://github.com/magician-project/iit-doosan-ros-pkg $$ \
