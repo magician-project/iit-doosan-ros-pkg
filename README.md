@@ -22,7 +22,7 @@ Models for the doosan robot integrated in XBot2 ROS2 version humble
 `pub_robot_description` is not found if it is only a link)
   ```
   source /opt/ros/humble/setup.bash
-  source /opt/xbot/setup.bash
+  source /opt/xbot/setup.sh
   cd ~/ros_ws
   colcon build
   ```
