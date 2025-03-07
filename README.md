@@ -13,6 +13,9 @@ Models for the doosan robot integrated in XBot2 ROS2 version humble
   sudo apt update
   sudo apt install xbot2_desktop_full
   ```
+- Install the XBot2 client:
+  *TODO*
+  
 - Clone this repo, models and meshes are here so no need for the official doosan robot repo:
   ```
   mkdir -p ~/ros_ws/src && cd ~/ros_ws/src
