@@ -52,6 +52,10 @@ Check [docker folder](docker)
 2) Terminal 2: `xbot2-core --simtime` (*note*: `--hw sim` is the default)
 3) Play the simulation (gazebo gui button) - I am looking for a working way to start it automatically
 
+### Gazebo_Visualization_Tool (dynamic simulation)
+1) Terminal 1: `ros2 launch doosan_gazebo h2515.launch.py gripper:=dewalt` (for visualization the tool along with the robot)
+2) Terminal 2: `xbot2-core --simtime` (for staring the Xbot2 interface)
+
 ### Optional
 #### GUI
 1) Terminal 1: `xbot2_gui_server`
