@@ -13,7 +13,7 @@ Models for the doosan robot integrated in XBot2 ROS2 version humble
   sudo apt update
   sudo apt install xbot2_desktop_full
   ```
-- Install XBot2 GUI
+- Install XBot2 GUI 
   *TODO*
 - Clone this repo, models and meshes are here so no need for the official doosan robot repo:
   ```
@@ -24,7 +24,7 @@ Models for the doosan robot integrated in XBot2 ROS2 version humble
 `pub_robot_description` is not found if it is only a link)
   ```
   source /opt/ros/humble/setup.bash
-  source /opt/xbot/setup.bash
+  source /opt/xbot/setup.sh
   cd ~/ros_ws
   colcon build
   ```
