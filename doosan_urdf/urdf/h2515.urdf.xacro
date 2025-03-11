@@ -25,7 +25,7 @@
     <joint name = "tcp_joint" type="fixed">
       <parent link="link_6"/>
       <child link="tcp"/>
-      <origin rpy = "0 0 -1.571" xyz = "0 0 0" />
+      <origin rpy = "0 0 0" xyz = "0 0 0" />
     </joint>
   </xacro:if>
   <xacro:if value="${gr == 'dewalt'}">
@@ -34,7 +34,7 @@
     <joint name = "tcp_joint" type="fixed">
       <parent link="tool_link"/>
       <child link="tcp"/>
-      <origin rpy = "0 0 0" xyz = "0 0 0" />
+      <origin rpy = "0 0 1.571" xyz = "0 0 0.17872" />
     </joint>
   </xacro:if>
 

@@ -22,7 +22,7 @@ vlim:
 tcp:
   type: Cartesian
   lambda: 0.1
-  distal_link: link_6
+  distal_link: tcp
   use_local_subtasks: true
 
 postural:
