@@ -21,6 +21,7 @@ def generate_launch_description():
 
     # External args
     color_arg = DeclareLaunchArgument("color", default_value="white")
+    gripper_arg = DeclareLaunchArgument("gripper", default_value="none")
     x_arg = DeclareLaunchArgument("x", default_value="0")    
     y_arg = DeclareLaunchArgument("y", default_value="0")
     z_arg = DeclareLaunchArgument("z", default_value="0")
@@ -42,6 +43,7 @@ def generate_launch_description():
             robot_xacro,
             mappings={
                 "color": context.launch_configurations["color"],
+                "gripper": context.launch_configurations["gripper"],
             },
         )
         robot_desc = robot_description_config.toxml()
@@ -108,6 +110,7 @@ def generate_launch_description():
     return LaunchDescription([
         rviz_arg,
         color_arg,
+        gripper_arg,
         x_arg,
         y_arg,
         z_arg,

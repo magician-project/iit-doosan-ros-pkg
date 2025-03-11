@@ -1,8 +1,11 @@
 <?xml version="1.0" ?>
 <robot xmlns:xacro="http://ros.org/wiki/xacro" name="h2515">
-        
+
+    <xacro:arg name="gripper" default="none"/>
+    <xacro:property name="gr" value="$(arg gripper)"/>
+
     <group name="arm">
-        <chain base_link="base_link" tip_link="link_6"/>
+        <chain base_link="base_link" tip_link="tcp"/>
     </group>
     <group name="chains">
         <group name="arm"/>
@@ -29,5 +32,10 @@
     <disable_collisions link1="link_4" link2="link_5" reason="Adjacent" />
     <disable_collisions link1="link_4" link2="link_6" reason="Never" />
     <disable_collisions link1="link_5" link2="link_6" reason="Adjacent" />
+    <xacro:if value="${gr == 'dewalt'}">
+        <disable_collisions link1="link_6" link2="tool_link" reason="Never" />
+        <disable_collisions link1="link_5" link2="tool_link" reason="Adjacent" />
+    </xacro:if>
 
+    
 </robot>
