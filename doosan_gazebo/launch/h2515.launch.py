@@ -21,7 +21,7 @@ def generate_launch_description():
 
     # External args
     color_arg = DeclareLaunchArgument("color", default_value="white")
-    gripper_arg = DeclareLaunchArgument("gripper", default_value="")
+    gripper_arg = DeclareLaunchArgument("gripper", default_value="none")
     x_arg = DeclareLaunchArgument("x", default_value="0")    
     y_arg = DeclareLaunchArgument("y", default_value="0")
     z_arg = DeclareLaunchArgument("z", default_value="0")
