@@ -6,6 +6,8 @@ Models for the doosan robot integrated in XBot2 ROS2 version humble
   - `sudo apt install -y ros-humble-srdfdom ros-humble-geometric-shapes`
 - Install CartesI/O dependencies
   - `sudo apt install -y ros-humble-moveit-msgs`
+- Install other necessary dependencies:
+  - `sudo apt install -y ros-humble-xacro`
 - Install XBot2:
   ```
   sudo sh -c 'echo "deb http://xbot.cloud/xbot2-nightly/ubuntu/$(lsb_release -sc) /" > /etc/apt/sources.list.d/xbot-latest.list'
