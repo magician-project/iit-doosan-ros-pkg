@@ -7,10 +7,12 @@
   <xacro:arg name="gripper" default="none"/>
   <xacro:arg name="namespace" default=""/>
   <xacro:arg name="use_gazebo" default="false"/>
+  <xacro:arg name="table" default="false"/>
   
   <xacro:property name="cr" value="$(arg color)"/>
   <xacro:property name="gr" value="$(arg gripper)"/>
   <xacro:property name="gz" value="$(arg use_gazebo)"/>
+  <xacro:property name="table" value="$(arg table)"/>
   
   <xacro:if value="${cr == 'white'}">
     <xacro:include filename="$(find doosan_urdf)/urdf/macro.h2515.white.xacro" />
@@ -37,17 +39,42 @@
       <origin rpy = "0 0 1.571" xyz = "0 0 0.17872" />
     </joint>
   </xacro:if>
-
   <link name = "tcp"></link>
 
-
   <link name="world"/>
-  <!-- World fixed joint-->
-  <joint name="world_fixed" type="fixed">
-    <origin xyz="0 0 0" rpy="0 0 0"/>
-    <parent link="world"/>
-    <child link="base_link"/>
-  </joint>
-  
+
+  <xacro:if value="${table}">
+    <xacro:arg name="surface_name" default="table"/>
+    <xacro:arg name="surface_size_x" default="1.1"/>
+    <xacro:arg name="surface_size_y" default="2"/>
+    <xacro:arg name="surface_size_z" default="0.05"/>
+    <xacro:arg name="surface_high" default="1.2"/>
+    <xacro:arg name="surface_mass" default="30"/>
+    <xacro:arg name="leg_mass" default="2"/>
+    <xacro:arg name="surface_gazebo_color" default="Gazebo/Wood"/>
+    <xacro:arg name="leg_gazebo_color" default="Gazebo/Gray"/>
+    <xacro:arg name="kp" default="1e13"/>
+    <xacro:arg name="kd" default="1"/>
+    <xacro:include filename="$(find doosan_urdf)/urdf/table.urdf.xacro" />
+    <joint name="world_fixed" type="fixed">
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <parent link="world"/>
+      <child link="table_base_footprint"/>
+    </joint>
+    <joint name="table_to_base" type="fixed">
+      <origin xyz="0 -0.75 0" rpy="0 0 1.57"/>
+      <parent link="${surface_name}_top"/>
+      <child link="base_link"/>
+    </joint>
+  </xacro:if>
+
+  <xacro:unless value="${table}">
+    <joint name="world_fixed" type="fixed">
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <parent link="world"/>
+      <child link="base_link"/>
+    </joint>
+  </xacro:unless>
+
 </robot>
 

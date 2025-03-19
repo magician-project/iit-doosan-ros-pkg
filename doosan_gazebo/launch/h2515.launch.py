@@ -21,6 +21,7 @@ def generate_launch_description():
 
     # External args
     color_arg = DeclareLaunchArgument("color", default_value="white")
+    table_arg = DeclareLaunchArgument("table", default_value="true")
     gripper_arg = DeclareLaunchArgument("gripper", default_value="none")
     x_arg = DeclareLaunchArgument("x", default_value="0")    
     y_arg = DeclareLaunchArgument("y", default_value="0")
@@ -43,6 +44,7 @@ def generate_launch_description():
             robot_xacro,
             mappings={
                 "color": context.launch_configurations["color"],
+                "table": context.launch_configurations["table"],
                 "gripper": context.launch_configurations["gripper"],
             },
         )
@@ -111,6 +113,7 @@ def generate_launch_description():
         rviz_arg,
         color_arg,
         gripper_arg,
+        table_arg,
         x_arg,
         y_arg,
         z_arg,

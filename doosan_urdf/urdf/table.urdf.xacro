@@ -1,0 +1,131 @@
+<?xml version="1.0" ?>
+<robot xmlns:xacro="http://ros.org/wiki/xacro" name="table">
+
+    <xacro:property name="surface_size_x" value="$(arg surface_size_x)"/>
+    <xacro:property name="surface_size_y" value="$(arg surface_size_y)"/>
+    <xacro:property name="surface_size_z" value="$(arg surface_size_z)"/>
+    <xacro:property name="surface_mass" value="$(arg surface_mass)"/>
+    <xacro:property name="surface_high" value="$(arg surface_high)"/>
+    <xacro:property name="leg_mass" value="$(arg leg_mass)"/>
+    <xacro:property name="surface_gazebo_color" value="$(arg surface_gazebo_color)"/>
+    <xacro:property name="leg_gazebo_color" value="$(arg leg_gazebo_color)"/>
+    <xacro:property name="kp" value="$(arg kp)"/>
+    <xacro:property name="kd" value="$(arg kd)"/>
+    <xacro:property name="surface_name" value="$(arg surface_name)"/>
+
+    <material name="${surface_gazebo_color}">
+        <color rgba="1.0 1.0 1.0 1.0"/>
+    </material>
+    <material name="${leg_gazebo_color}">
+        <color rgba=".3 .3 .3 1.0"/>
+    </material>
+    
+    <origin rpy="0 0 0" xyz="0 0 0"/>
+    <link name="table_base_footprint"></link>
+    <joint name="table_base_footprint_joint" type="fixed">
+        <child link="${surface_name}"/>
+        <origin rpy="0.0 0.0 0.0" xyz="0 0 ${surface_high-(surface_size_z/2)}"/>
+        <parent link="table_base_footprint"/>
+    </joint>
+    
+    <link name="${surface_name}">
+        <inertial>
+            <mass value="${surface_mass}" />
+            <inertia  ixx="${0.083 * surface_mass * (surface_size_y*surface_size_y + surface_size_z*surface_size_z)}" ixy="0.0"  ixz="0.0"  
+                      iyy="${0.083 * surface_mass * (surface_size_x*surface_size_x + surface_size_z*surface_size_z)}"  iyz="0.0"  
+                      izz="${0.083 * surface_mass * (surface_size_x*surface_size_x + surface_size_y*surface_size_y)}" />
+        </inertial>
+
+        <collision>
+            <geometry>
+                <box size="${surface_size_x} ${surface_size_y} ${surface_size_z}"/>
+            </geometry>
+        </collision>
+        
+        <visual>
+            <geometry>
+                <box size="${surface_size_x} ${surface_size_y} ${surface_size_z}"/>
+            </geometry>
+            <material name="${surface_gazebo_color}"/>
+        </visual>
+    </link>
+    
+    <gazebo reference="${surface_name}">
+        <mu1>0.8</mu1>
+        <mu2>0.8</mu2>
+        <kp>${kp}</kp>
+        <kd>${kd}</kd>	
+        <material>${surface_gazebo_color}</material>
+    </gazebo>
+    
+    <link name="${surface_name}_top"></link>
+    <joint name="${surface_name}_top_joint" type="fixed">
+        <parent link="${surface_name}"/>
+        <origin rpy="0.0 0.0 0.0" xyz="0 0 ${surface_size_z/2}"/>
+        <child link="${surface_name}_top"/>
+    </joint>
+    
+    <!-- LEGS -->
+    <xacro:macro name="table_leg" params="name">
+    <link name="${name}">
+    
+        <inertial>
+            <mass value="${leg_mass}" />
+            <inertia    ixx="${0.083 * leg_mass * (3*0.02*0.02 + (surface_high - surface_size_z)*(surface_high - surface_size_z))}"  ixy="0.0"  ixz="0.0"  
+                        iyy="${0.083 * leg_mass * (3*0.02*0.02 + (surface_high - surface_size_z)*(surface_high - surface_size_z))}"  iyz="0.0"  
+                        izz="${0.5 * leg_mass * 0.02 * 0.02}" />
+        </inertial>
+
+        <collision>
+            <geometry>
+                <cylinder radius="0.02" length="${surface_high - surface_size_z}"/>
+            </geometry>
+        </collision>
+        
+        <visual>
+            <origin xyz="0 0 0" rpy="0 0 0" />
+            <geometry>
+                <cylinder radius="0.02" length="${surface_high - surface_size_z}"/>
+            </geometry>
+            <material name="${leg_gazebo_color}"/>
+        </visual>
+   
+    </link>
+    <gazebo reference="${name}">
+        <mu1>0.8</mu1>
+        <mu2>0.8</mu2>
+        <kp>${kp}</kp>
+        <kd>${kd}</kd>	
+        <material>${leg_gazebo_color}</material>
+    </gazebo>
+    </xacro:macro>
+
+    <xacro:table_leg name="front_left_leg"/>
+    <xacro:table_leg name="front_right_leg"/>
+    <xacro:table_leg name="back_right_leg"/>
+    <xacro:table_leg name="back_left_leg"/>
+    
+    <!-- JOINTS -->
+    <joint name="front_left_leg_joint" type="fixed">
+        <parent link="${surface_name}"/>
+        <origin rpy="0.0 0.0 0.0" xyz="${surface_size_x/2 - 0.02} ${surface_size_y/2 - 0.02} ${-surface_high/2}"/>
+        <child link="front_left_leg"/>
+    </joint>
+    <joint name="front_right_leg_joint" type="fixed">
+        <parent link="${surface_name}"/>
+        <origin rpy="0.0 0.0 0.0" xyz="${surface_size_x/2 - 0.02} ${-surface_size_y/2 + 0.02} ${-surface_high/2}"/>
+        <child link="front_right_leg"/>
+    </joint>
+    <joint name="back_right_leg_joint" type="fixed">
+        <parent link="${surface_name}"/>
+        <origin rpy="0.0 0.0 0.0" xyz="${-surface_size_x/2 + 0.02} ${-surface_size_y/2 + 0.02} ${-surface_high/2}"/>
+        <child link="back_right_leg"/>
+    </joint>
+    <joint name="back_left_leg_joint" type="fixed">
+        <parent link="${surface_name}"/>
+        <origin rpy="0.0 0.0 0.0" xyz="${-surface_size_x/2 + 0.02} ${surface_size_y/2 - 0.02} ${-surface_high/2}"/>
+        <child link="back_left_leg"/>
+    </joint>
+    
+</robot>
+
