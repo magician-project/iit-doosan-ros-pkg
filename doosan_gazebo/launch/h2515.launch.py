@@ -13,15 +13,15 @@ from launch.launch_description_sources import PythonLaunchDescriptionSource
 from launch.substitutions import LaunchConfiguration
 
 from launch_ros.actions import Node
-
+import launch_ros
 import xacro
 
 
 def generate_launch_description():
 
     # External args
-    color_arg = DeclareLaunchArgument("color", default_value="white")
-    table_arg = DeclareLaunchArgument("table", default_value="true")
+    color_arg = DeclareLaunchArgument("color", default_value="blue")
+    table_arg = DeclareLaunchArgument("table", default_value="false")
     gripper_arg = DeclareLaunchArgument("gripper", default_value="none")
     x_arg = DeclareLaunchArgument("x", default_value="0")    
     y_arg = DeclareLaunchArgument("y", default_value="0")
@@ -62,7 +62,7 @@ def generate_launch_description():
         name="pub_robot_description",
         output="screen",
         parameters=[
-            {"urdf_string": LaunchConfiguration("robot_desc")},
+            {"urdf_string": launch_ros.parameter_descriptions.ParameterValue(LaunchConfiguration("robot_desc"), value_type=str)},
             {"topic_name": "robot_description"},
         ],
     )
@@ -86,7 +86,7 @@ def generate_launch_description():
     gz_sim = IncludeLaunchDescription(
         PythonLaunchDescriptionSource(os.path.join(pkg_ros_gz_sim, "launch", "gz_sim.launch.py")),
         launch_arguments={
-            'gz_args': world_file
+            'gz_args': " -r " + world_file
         }.items()
     )
 
