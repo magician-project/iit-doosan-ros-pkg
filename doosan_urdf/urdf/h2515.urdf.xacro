@@ -3,8 +3,9 @@
     since xbot will be used -->
 <robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="h2515" >
 
-  <xacro:arg name="color"   default="white"/>
+  <xacro:arg name="color"   default="blue"/>
   <xacro:arg name="gripper" default="none"/>
+  <xacro:arg name="setup" default="none"/>
   <xacro:arg name="namespace" default=""/>
   <xacro:arg name="use_gazebo" default="false"/>
   <xacro:arg name="table" default="false"/>
@@ -12,7 +13,7 @@
   <xacro:property name="cr" value="$(arg color)"/>
   <xacro:property name="gr" value="$(arg gripper)"/>
   <xacro:property name="gz" value="$(arg use_gazebo)"/>
-  <xacro:property name="table" value="$(arg table)"/>
+  <xacro:property name="stp" value="$(arg setup)"/>
   
   <xacro:if value="${cr == 'white'}">
     <xacro:include filename="$(find doosan_urdf)/urdf/macro.h2515.white.xacro" />
@@ -43,7 +44,14 @@
 
   <link name="world"/>
 
-  <xacro:if value="${table}">
+  <xacro:if value="${stp == 'none'}">
+    <joint name="world_fixed" type="fixed">
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <parent link="world"/>
+      <child link="base_link"/>
+    </joint>
+  </xacro:if>
+  <xacro:if value="${stp == 'iit'}">
     <xacro:arg name="surface_name" default="table"/>
     <xacro:arg name="surface_size_x" default="1.1"/>
     <xacro:arg name="surface_size_y" default="2"/>
@@ -68,13 +76,6 @@
     </joint>
   </xacro:if>
 
-  <xacro:unless value="${table}">
-    <joint name="world_fixed" type="fixed">
-      <origin xyz="0 0 0" rpy="0 0 0"/>
-      <parent link="world"/>
-      <child link="base_link"/>
-    </joint>
-  </xacro:unless>
 
 </robot>
 
