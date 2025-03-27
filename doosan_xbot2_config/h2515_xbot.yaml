@@ -1,5 +1,5 @@
 XBotInterface:
-  urdf: xacro $(ros2 pkg prefix --share doosan_urdf)/urdf/h2515.urdf.xacro table:=true gripper:=dewalt
+  urdf: xacro $(ros2 pkg prefix --share doosan_urdf)/urdf/h2515.urdf.xacro setup:=iit gripper:=dewalt
   srdf: xacro $(ros2 pkg prefix --share doosan_srdf)/srdf/h2515.srdf.xacro gripper:=dewalt
 
 ModelInterface:

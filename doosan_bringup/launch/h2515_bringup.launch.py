@@ -1,4 +1,4 @@
-from launch.event_handlers.on_process_exit import OnProcessExit
+from launch.event_handlers import OnProcessExit, OnExecutionComplete
 import xacro
 import os
 from launch import LaunchDescription
@@ -7,10 +7,16 @@ from launch.actions import (
     IncludeLaunchDescription,
     OpaqueFunction,
     RegisterEventHandler,
+    TimerAction,
+    ExecuteProcess,
+    LogInfo,
 )
-from launch.substitutions import LaunchConfiguration
+from launch.substitutions import LaunchConfiguration, FindExecutable
 from launch.conditions import IfCondition, UnlessCondition
-from launch.launch_description_sources import PythonLaunchDescriptionSource
+from launch.launch_description_sources import (
+    PythonLaunchDescriptionSource,
+    AnyLaunchDescriptionSource,
+)
 from launch_ros.actions import Node
 from launch_ros.substitutions import FindPackageShare
 from ament_index_python.packages import (
@@ -31,20 +37,28 @@ AVAILABLE_SETUPS = [
 
 def launch_setup(context, *args, **kwargs):
 
+    nodes_to_start = []
+
     gripper = LaunchConfiguration("gripper").perform(context)
     setup = LaunchConfiguration("setup").perform(context)
     rviz = LaunchConfiguration("rviz").perform(context)
     rviz_config = LaunchConfiguration("rviz_config").perform(context)
     simulator = LaunchConfiguration("simulator").perform(context)
+    with_xbot = LaunchConfiguration("xbot").perform(context)
 
     use_sim_time = (simulator == "true")
-    is_simulation = IfCondition(simulator)
-    is_real = UnlessCondition(simulator)
 
-    xacro_file = os.path.join(
-        get_package_share_path("doosan_urdf"), "urdf", "h2515.urdf.xacro"
-    )
-
+    ###
+    ### ROBOT DESCRIPTION
+    ###
+    if simulator == "true":
+        xacro_file = os.path.join(
+            get_package_share_path("doosan_gazebo"), "urdf", "h2515_gazebo.urdf.xacro"
+        )
+    else:
+        xacro_file = os.path.join(
+            get_package_share_path("doosan_urdf"), "urdf", "h2515.urdf.xacro"
+        )
     robot_description_content = xacro.process(
         xacro_file, mappings={
             "gripper": gripper,
@@ -61,8 +75,88 @@ def launch_setup(context, *args, **kwargs):
             "use_sim_time": use_sim_time,
         }],
     )
+    nodes_to_start += [
+        robot_state_publisher_node,
+    ]
 
-    print("RViz config path:", rviz_config)
+    ###
+    ### SIMULATOR
+    ###
+    world_file = os.path.join(
+        get_package_share_path("doosan_gazebo"), "world", "doosan.world"
+    )
+    ignition_simulator_node = IncludeLaunchDescription(
+        PythonLaunchDescriptionSource([
+            FindPackageShare("ros_gz_sim"), "/launch/gz_sim.launch.py"
+        ], ),
+        launch_arguments={
+            "gz_args": f" -r -v 1 {world_file}",
+        }.items(),
+        condition=IfCondition(simulator)
+    )
+
+    ignition_spawn_robot = Node(
+        package="ros_gz_sim",
+        executable="create",
+        output="screen",
+        arguments=["-name", "h2515", "-topic", "/robot_description"],
+        condition=IfCondition(simulator)
+    )
+
+    nodes_to_start += [
+        ignition_simulator_node,
+        ignition_spawn_robot,
+    ]
+
+    ###
+    ### XBOT2
+    ###
+    xbot_core_arguments = [
+        "--config",
+        os.path.join(get_package_share_path("doosan_xbot2_config"), "h2515_xbot.yaml"),
+    ]
+    if simulator == "true":
+        xbot_core_arguments += ["--simtime"]
+
+    xbot_core = ExecuteProcess(
+        cmd=[FindExecutable(name="xbot2-core"), *xbot_core_arguments],
+        output="screen",
+        condition=IfCondition(with_xbot),
+    )
+
+    cartesio_share = get_package_share_path("doosan_cartesio")
+    cartesio_launch_file = IncludeLaunchDescription(
+        AnyLaunchDescriptionSource(
+            launch_file_path=os.path.join(cartesio_share, "launch", "h2515.launch"),
+        ),
+        condition=IfCondition(with_xbot),
+    )
+    cartesio_delayed = TimerAction(
+        period=3.0,
+        actions=[cartesio_launch_file],
+    )
+
+    if simulator == "true":
+        cartesio_delayed_on_spawn = RegisterEventHandler(
+            OnProcessExit(
+                target_action=ignition_spawn_robot, on_exit=[
+                    cartesio_delayed,
+                ]
+            )
+        )
+        nodes_to_start += [
+            xbot_core,
+            cartesio_delayed_on_spawn,
+        ]
+    else:
+        nodes_to_start += [
+            xbot_core,
+            cartesio_delayed,
+        ]
+
+    ###
+    ### RVIZ
+    ###
     rviz_node = Node(
         package="rviz2",
         executable="rviz2",
@@ -71,8 +165,7 @@ def launch_setup(context, *args, **kwargs):
         condition=IfCondition(rviz),
     )
 
-    nodes_to_start = [
-        robot_state_publisher_node,
+    nodes_to_start += [
         rviz_node,
     ]
     return nodes_to_start
@@ -81,28 +174,13 @@ def launch_setup(context, *args, **kwargs):
 def generate_launch_description():
     declared_arguments = []
 
-    # --- Setup environment variables
-    # MDL_ENV_VAR = "IGN_GAZEBO_RESOURCE_PATH"
-    # if MDL_ENV_VAR in os.environ:
-    #     os.environ[MDL_ENV_VAR] += ":" + os.path.join(
-    #         get_package_prefix("z1_description"), "share"
-    #     )
-    # else:
-    #     os.environ[MDL_ENV_VAR] = os.path.join(
-    #         get_package_prefix("z1_description"), "share"
-    #     )
-
-    # LIB_ENV_VAR = "IGN_GAZEBO_SYSTEM_PLUGIN_PATH"
-    # if LIB_ENV_VAR in os.environ:
-    #     os.environ[LIB_ENV_VAR] += ":/opt/ros/humble/lib"
-    # else:
-    #     os.environ[LIB_ENV_VAR] = "/opt/ros/humble/lib"
-
     rviz_config_default = os.path.join(
         get_package_share_path("doosan_bringup"), "rviz", "h2515.rviz"
     )
 
-    # --- Launch arguments
+    ###
+    ### LAUNCH ARGUMENTS
+    ###
     declared_arguments.append(
         DeclareLaunchArgument(
             "gripper",
@@ -129,6 +207,12 @@ def generate_launch_description():
 
     declared_arguments.append(
         DeclareLaunchArgument("rviz", default_value="true", description="Launch RViz?")
+    )
+
+    declared_arguments.append(
+        DeclareLaunchArgument(
+            "xbot", default_value="true", description="Launch XBot scripts?"
+        )
     )
 
     declared_arguments.append(
