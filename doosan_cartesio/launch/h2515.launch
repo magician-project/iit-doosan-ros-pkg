@@ -19,12 +19,14 @@
     <arg name="problem_description_filename" default="$(find-pkg-share doosan_cartesio)/config/h2515.yaml"/>
 
 
-    <node pkg="cartesian_interface" exec="ros_server_node"
+    <node pkg="cartesian_interface_ros" exec="ros_server_node"
                                     name="ros_server_node"
                                     output="screen"
                                     launch-prefix="$(var prefix)">
         <remap from="robot_description" to="/xbotcore/robot_description"/>
         <remap from="robot_description_semantic" to="/xbotcore/robot_description_semantic"/>
+        <remap from="/model_description/robot_description" to="/xbotcore/robot_description"/>
+        <remap from="/model_description/robot_description_semantic" to="/xbotcore/robot_description_semantic"/>
 
         <param name="enable_otg" value="$(var enable_otg)"/>
         <param name="is_model_floating_base" value="$(var is_model_floating_base)"/>
@@ -37,7 +39,7 @@
         <param name="problem_description" type="str" value="$(command 'cat $(var problem_description_filename)')"/>
     </node>
 
-    <node if="$(var markers)" pkg="cartesian_interface" exec="marker_spawner" name="interactive_markers" output="screen">
+    <node if="$(var markers)" pkg="cartesian_interface_ros" exec="marker_spawner" name="interactive_markers" output="screen">
         <param name="tf_prefix" value="$(var tf_prefix)"/>
         <remap from="robot_description" to="/xbotcore/robot_description"/>
         <remap from="robot_description_semantic" to="/xbotcore/robot_description_semantic"/>
