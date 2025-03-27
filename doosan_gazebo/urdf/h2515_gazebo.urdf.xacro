@@ -14,15 +14,28 @@
                 <joint name="does_not_exist_2" />
             </ignored_joints> -->
 
-            <profile name="small_mot"  p="500"  d="5"/>
-            <profile name="medium_mot" p="1000" d="10"/>
-            <profile name="big_mot"    p="3000" d="20"/>
+            <!-- From official doosan ROS1 values: 
+            gazebo_ros_control/pid_gains:
+                joint1: {p: 5000.0, i: 5000, d: 85}
+                joint2: {p: 10000.0, i: 10000, d: 100}
+                joint3: {p: 10000.0, i: 10000, d: 100}
+                joint4: {p: 5000.0, i: 5000, d: 85}
+                joint5: {p: 6000.0, i: 6000, d: 85}
+                joint6: {p: 5000.0, i: 5000, d: 85}
+            are they correct? Who knows -->
 
-            <pid name="joint_1" profile="big_mot"/>
+            <profile name="small_mot"  p="5000"  d="85"/>
+            <profile name="medium_mot" p="6000" d="85"/>
+            <profile name="big_mot"    p="10000" d="100"/>
+            <!-- <profile name="small_mot"  p="500"  d="5"/>
+            <profile name="medium_mot" p="1000" d="10"/>
+            <profile name="big_mot"    p="3000" d="20"/> -->
+
+            <pid name="joint_1" profile="small_mot"/>
             <pid name="joint_2" profile="big_mot"/>
             <pid name="joint_3" profile="big_mot"/>
-            <pid name="joint_4" profile="medium_mot"/>
-            <pid name="joint_5" profile="small_mot"/>
+            <pid name="joint_4" profile="small_mot"/>
+            <pid name="joint_5" profile="medium_mot"/>
             <pid name="joint_6" profile="small_mot"/>
            
             <initial_configuration>
