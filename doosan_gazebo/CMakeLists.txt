@@ -30,6 +30,7 @@ endif()
 
 install(PROGRAMS
   scripts/pub_robot_description
+  scripts/send_joint_command
   DESTINATION lib/${PROJECT_NAME}
 )
 
