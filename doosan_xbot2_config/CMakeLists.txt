@@ -7,7 +7,7 @@ install(DIRECTORY hal
   DESTINATION share/${PROJECT_NAME}
 )
 
-install(FILES h2515_xbot.yaml 
+install(DIRECTORY conf
   DESTINATION share/${PROJECT_NAME}
 )
 

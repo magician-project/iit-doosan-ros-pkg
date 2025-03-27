@@ -1,0 +1,62 @@
+XBotInterface:
+  urdf: xacro $(ros2 pkg prefix --share doosan_urdf)/urdf/h2515.urdf.xacro table:=false gripper:=none
+  srdf: xacro $(ros2 pkg prefix --share doosan_srdf)/srdf/h2515.srdf.xacro gripper:=none
+
+ModelInterface:
+  model_type: pin
+
+
+# hal
+xbotcore_device_configs:
+    sim: $(ros2 pkg prefix --share doosan_xbot2_config)/hal/h2515_gz.yaml
+    dummy: $(ros2 pkg prefix --share doosan_xbot2_config)/hal/h2515_dummy.yaml
+
+
+# threads
+xbotcore_threads:
+    rt_main:  {sched: fifo , prio: 60, period: 0.001}
+    nrt_main: {sched: other, prio: 0 , period: 0.005}
+
+
+# plugins
+xbotcore_plugins:
+
+    homing:
+        thread: rt_main
+        type: homing
+
+    ros_io: {thread: nrt_main, type: ros2_io}
+
+    ros_control: {thread: nrt_main, type: ros2_control, params: {autostart: true}}
+
+    cartesio_imp: 
+      thread: rt_main 
+      type: albero_cartesio_rt
+      params:
+          #ctrl_override: *ctrl_override
+          enabled_chains: 
+              value: [arm]
+              type: vector<string>
+          problem_description:
+              value: /home/user/ros_ws/install/doosan_xbot2_config/share/doosan_xbot2_config/conf/doosan_impedance_config.yaml
+              type: file
+          solver: {value: AlberoImpedance, type: string}
+          enable_feedback: {value: true, type: bool}
+          fc_map: {value: {low: 0.85, high: 0.99}, type: map<double>}
+          use_payload_estimator:
+            value: false  # note: keep false if you care to live
+            type: bool
+          payload_estimator_link:
+            value: tcp
+            type: string
+          _external_gravity_compensation:
+            value: false  # note: keep false in simulation, true on the real robot
+            type: bool
+    
+
+
+# global parameters
+xbotcore_param:
+  /xbot/hal/joint_safety/filter_autostart: true
+  /xbot/hal/joint_safety/filter_cutoff_hz: 2.0
+  /xbot/hal/enable_safety: true
