@@ -1,0 +1,132 @@
+<?xml version="1.0" ?>
+<robot xmlns:xacro="http://ros.org/wiki/xacro" name="iit_table">
+
+    <!-- Components lengths (l), widths (w) and heights (h) -->
+    <!-- Measured by hand by Matteo Dalle Vedove (matteo.dallevedove@unitn.it) -->
+    <!-- Contact me directly for detailed description -->
+    <xacro:property name="wood_l" value="1.40"/>
+    <xacro:property name="wood_w" value="0.94"/>
+    <xacro:property name="wood_h" value="0.02"/>
+
+    <xacro:property name="ironplate_l" value="0.75"/>
+    <xacro:property name="ironplate_w" value="1.0"/>
+    <xacro:property name="ironplate_h" value="0.05"/>
+
+    <xacro:property name="basepos_x" value="0.50"/>
+    <xacro:property name="basepos_y" value="0.225"/>
+    
+    <xacro:property name="woodiron_overlap" value="0.11"/>
+    <xacro:property name="profile_dim" value="0.04"/> 
+
+    <!-- Auxiliary dimension computation -->
+    <xacro:property name="profile_l" value="${wood_l + ironplate_l - woodiron_overlap}"/> 
+    <xacro:property name="profile_w" value="${wood_w - 2*profile_dim}"/> 
+    <xacro:property name="profile_off" value="${(ironplate_w - wood_w)/2}"/> 
+
+    <material name="aluminum">
+        <color rgba="0.7 0.7 0.7 1.0"/>
+    </material>
+    <material name="iron">
+        <color rgba="0.5 0.5 0.5 1.0"/>
+    </material>
+    <material name="wood">
+        <color rgba="${230/255} ${184/255} ${0/255} 1.0"/>
+    </material>
+    
+    <origin rpy="0 0 0" xyz="0 0 0"/>
+    <link name="ironplate_reference"></link>
+
+    <!-- Iron plate where doosan is mounted -->
+    <link name="ironplate">
+        <visual>
+            <origin xyz="${ironplate_w/2} ${ironplate_l/2} -${ironplate_h/2}"/>
+            <geometry>
+                <box size="${ironplate_w} ${ironplate_l} ${ironplate_h}"/>
+            </geometry>
+            <material name="iron"/>
+        </visual>
+    </link>
+    <joint name="robot_reference_joint" type="fixed">
+        <origin rpy="0.0 0.0 0.0" xyz="-${basepos_x} -${basepos_y} 0"/>
+        <parent link="ironplate_reference"/>
+        <child link="ironplate"/>
+    </joint>
+
+    <!-- aluminum profiles -->
+    <link name="aluprofile_long_1">
+        <visual>
+            <origin xyz="${profile_dim/2} ${profile_l/2} ${profile_dim/2}"/>
+            <geometry>
+                <box size="${profile_dim} ${profile_l} ${profile_dim}"/>
+            </geometry>
+            <material name="aluminum"/>
+        </visual>
+    </link>
+    <joint name="profile_joint1" type="fixed">
+        <origin xyz="${profile_off} 0.0 0.0"/>
+        <parent link="ironplate"/>
+        <child link="aluprofile_long_1"/>
+    </joint>
+
+    <link name="aluprofile_short_1">
+        <visual>
+            <origin xyz="${profile_w/2} ${profile_dim/2} ${profile_dim/2}"/>
+            <geometry>
+                <box size="${profile_w} ${profile_dim} ${profile_dim}"/>
+            </geometry>
+            <material name="aluminum"/>
+        </visual>
+    </link>
+    <joint name="profile_joint2" type="fixed">
+        <origin xyz="${profile_off} 0.0 0.0"/>
+        <parent link="aluprofile_long_1"/>
+        <child link="aluprofile_short_1"/>
+    </joint>
+
+    <link name="aluprofile_long_2">
+        <visual>
+            <origin xyz="${profile_dim/2} ${profile_l/2} ${profile_dim/2}"/>
+            <geometry>
+                <box size="${profile_dim} ${profile_l} ${profile_dim}"/>
+            </geometry>
+            <material name="aluminum"/>
+        </visual>
+    </link>
+    <joint name="profile_joint3" type="fixed">
+        <origin xyz="${profile_w} 0.0 0.0"/>
+        <parent link="aluprofile_short_1"/>
+        <child link="aluprofile_long_2"/>
+    </joint>
+
+    <link name="aluprofile_short_2">
+        <visual>
+            <origin xyz="${profile_w/2} ${profile_dim/2} ${profile_dim/2}"/>
+            <geometry>
+                <box size="${profile_w} ${profile_dim} ${profile_dim}"/>
+            </geometry>
+            <material name="aluminum"/>
+        </visual>
+    </link>
+    <joint name="profile_joint4" type="fixed">
+        <origin xyz="0.0 ${profile_l - profile_dim} 0.0"/>
+        <parent link="aluprofile_short_1"/>
+        <child link="aluprofile_short_2"/>
+    </joint>
+
+    <!-- wood panel -->
+    <link name="wood_panel">
+        <visual>
+            <origin xyz="${wood_w/2} ${wood_l/2} ${-wood_h/2}"/>
+            <geometry>
+                <box size="${wood_w} ${wood_l} ${wood_h}"/>
+            </geometry>
+            <material name="wood"/>
+        </visual>
+    </link>
+    <joint name="wood_panel_joint" type="fixed">
+        <origin xyz="${-profile_dim} ${-wood_l + profile_dim} ${profile_dim+wood_h}"/>
+        <parent link="aluprofile_short_2"/>
+        <child link="wood_panel"/>
+    </joint>
+</robot>
+

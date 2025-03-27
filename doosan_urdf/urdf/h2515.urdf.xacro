@@ -52,26 +52,15 @@
     </joint>
   </xacro:if>
   <xacro:if value="${stp == 'iit'}">
-    <xacro:arg name="surface_name" default="table"/>
-    <xacro:arg name="surface_size_x" default="1.1"/>
-    <xacro:arg name="surface_size_y" default="2"/>
-    <xacro:arg name="surface_size_z" default="0.05"/>
-    <xacro:arg name="surface_high" default="1.2"/>
-    <xacro:arg name="surface_mass" default="30"/>
-    <xacro:arg name="leg_mass" default="2"/>
-    <xacro:arg name="surface_gazebo_color" default="Gazebo/Wood"/>
-    <xacro:arg name="leg_gazebo_color" default="Gazebo/Gray"/>
-    <xacro:arg name="kp" default="1e13"/>
-    <xacro:arg name="kd" default="1"/>
-    <xacro:include filename="$(find doosan_urdf)/urdf/table.urdf.xacro" />
+    <xacro:include filename="$(find doosan_urdf)/urdf/iit_table.urdf.xacro" />
     <joint name="world_fixed" type="fixed">
       <origin xyz="0 0 0" rpy="0 0 0"/>
       <parent link="world"/>
-      <child link="table_base_footprint"/>
+      <child link="ironplate_reference"/>
     </joint>
     <joint name="table_to_base" type="fixed">
-      <origin xyz="0 -0.75 0" rpy="0 0 1.57"/>
-      <parent link="${surface_name}_top"/>
+      <origin xyz="0 0 0" rpy="0 0 ${pi/2}"/>
+      <parent link="ironplate_reference"/>
       <child link="base_link"/>
     </joint>
   </xacro:if>
