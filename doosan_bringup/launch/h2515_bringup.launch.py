@@ -113,7 +113,9 @@ def launch_setup(context, *args, **kwargs):
     ###
     xbot_core_arguments = [
         "--config",
-        os.path.join(get_package_share_path("doosan_xbot2_config"), "conf", "h2515_xbot.yaml"),
+        os.path.join(
+            get_package_share_path("doosan_xbot2_config"), "conf", "h2515_xbot.yaml"
+        ),
     ]
     if simulator == "true":
         xbot_core_arguments += ["--simtime"]
@@ -144,13 +146,11 @@ def launch_setup(context, *args, **kwargs):
             )
         )
         nodes_to_start += [
-            xbot_core,
-            cartesio_delayed_on_spawn,
+            xbot_core,  # cartesio_delayed_on_spawn,
         ]
     else:
         nodes_to_start += [
-            xbot_core,
-            cartesio_delayed,
+            xbot_core,  # cartesio_delayed,
         ]
 
     ###
@@ -176,6 +176,14 @@ def generate_launch_description():
     rviz_config_default = os.path.join(
         get_package_share_path("doosan_bringup"), "rviz", "h2515.rviz"
     )
+
+    MDL_ENV_VAR = "IGN_GAZEBO_RESOURCE_PATH"
+    urdf_pkg_share = os.path.join(get_package_prefix("doosan_urdf"), "share")
+
+    if MDL_ENV_VAR in os.environ:
+        os.environ[MDL_ENV_VAR] += ":" + urdf_pkg_share
+    else:
+        os.environ[MDL_ENV_VAR] = urdf_pkg_share
 
     ###
     ### LAUNCH ARGUMENTS

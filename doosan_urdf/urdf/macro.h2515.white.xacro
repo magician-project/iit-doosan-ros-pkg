@@ -16,13 +16,13 @@
 				<collision>
 					<origin rpy="0 0 0" xyz="0 0 0" />
 					<geometry>
-						<mesh filename="package://$(find doosan_urdf)/meshes/h2515_collision/H2515_0_0.dae" scale="0.001 0.001 0.001" />
+						<mesh filename="package://doosan_urdf/meshes/h2515_collision/H2515_0_0.dae" scale="0.001 0.001 0.001" />
 					</geometry>
 				</collision>
 				<visual>
 					<origin rpy="0 0 0" xyz="0 0 0" />
 					<geometry>
-						<mesh filename="package://$(find doosan_urdf)/meshes/h2515_blue/H2515_0_0.dae" scale="0.001 0.001 0.001" />
+						<mesh filename="package://doosan_urdf/meshes/h2515_blue/H2515_0_0.dae" scale="0.001 0.001 0.001" />
 					</geometry>
 				</visual>
 			</link>
@@ -45,13 +45,13 @@
             <collision>
 				<origin rpy="0 0 0" xyz="0 0 0" />
 				<geometry>
-					<mesh filename="package://$(find doosan_urdf)/meshes/h2515_collision/H2515_1_0.dae" scale="0.001 0.001 0.001" />
+					<mesh filename="package://doosan_urdf/meshes/h2515_collision/H2515_1_0.dae" scale="0.001 0.001 0.001" />
 				</geometry>
 			</collision>
 			<visual>
 				<origin rpy="0 0 0" xyz="0 0 0" />
 				<geometry>
-					<mesh filename="package://$(find doosan_urdf)/meshes/h2515_white/H2515_1_0.dae" scale="0.001 0.001 0.001" />
+					<mesh filename="package://doosan_urdf/meshes/h2515_white/H2515_1_0.dae" scale="0.001 0.001 0.001" />
 				</geometry>
 			</visual>
 		</link>
@@ -74,37 +74,37 @@
             <collision>
 				<origin rpy="0 0 0" xyz="0 0 0" />
 				<geometry>
-					<mesh filename="package://$(find doosan_urdf)/meshes/h2515_collision/H2515_2_0.dae" scale="0.001 0.001 0.001" />
+					<mesh filename="package://doosan_urdf/meshes/h2515_collision/H2515_2_0.dae" scale="0.001 0.001 0.001" />
 				</geometry>
 			</collision>
 			<visual>
 				<origin rpy="0 0 0" xyz="0 0 0" />
 				<geometry>
-					<mesh filename="package://$(find doosan_urdf)/meshes/h2515_white/H2515_2_0.dae" scale="0.001 0.001 0.001" />
+					<mesh filename="package://doosan_urdf/meshes/h2515_white/H2515_2_0.dae" scale="0.001 0.001 0.001" />
 				</geometry>
 			</visual>
 			<collision>
 				<origin rpy="0 0 0" xyz="0 0 0" />
 				<geometry>
-					<mesh filename="package://$(find doosan_urdf)/meshes/h2515_collision/H2515_2_1.dae" scale="0.001 0.001 0.001" />
+					<mesh filename="package://doosan_urdf/meshes/h2515_collision/H2515_2_1.dae" scale="0.001 0.001 0.001" />
 				</geometry>
 			</collision>
 			<visual>
 				<origin rpy="0 0 0" xyz="0 0 0" />
 				<geometry>
-					<mesh filename="package://$(find doosan_urdf)/meshes/h2515_white/H2515_2_1.dae" scale="0.001 0.001 0.001" />
+					<mesh filename="package://doosan_urdf/meshes/h2515_white/H2515_2_1.dae" scale="0.001 0.001 0.001" />
 				</geometry>
 			</visual>
 			<collision>
 				<origin rpy="0 0 0" xyz="0 0 0" />
 				<geometry>
-					<mesh filename="package://$(find doosan_urdf)/meshes/h2515_collision/H2515_2_2.dae" scale="0.001 0.001 0.001" />
+					<mesh filename="package://doosan_urdf/meshes/h2515_collision/H2515_2_2.dae" scale="0.001 0.001 0.001" />
 				</geometry>
 			</collision>
 			<visual>
 				<origin rpy="0 0 0" xyz="0 0 0" />
 				<geometry>
-					<mesh filename="package://$(find doosan_urdf)/meshes/h2515_white/H2515_2_2.dae" scale="0.001 0.001 0.001" />
+					<mesh filename="package://doosan_urdf/meshes/h2515_white/H2515_2_2.dae" scale="0.001 0.001 0.001" />
 				</geometry>
 			</visual>
 		</link>
@@ -128,13 +128,13 @@
 			<collision>
 				<origin rpy="0 0 0" xyz="0 0 0" />
 				<geometry>
-					<mesh filename="package://$(find doosan_urdf)/meshes/h2515_collision/H2515_3_0.dae" scale="0.001 0.001 0.001" />
+					<mesh filename="package://doosan_urdf/meshes/h2515_collision/H2515_3_0.dae" scale="0.001 0.001 0.001" />
 				</geometry>
 			</collision>
             <visual>
 				<origin rpy="0 0 0" xyz="0 0 0" />
 				<geometry>
-					<mesh filename="package://$(find doosan_urdf)/meshes/h2515_white/H2515_3_0.dae" scale="0.001 0.001 0.001" />
+					<mesh filename="package://doosan_urdf/meshes/h2515_white/H2515_3_0.dae" scale="0.001 0.001 0.001" />
 				</geometry>
 			</visual>
 		</link>
@@ -157,25 +157,25 @@
             <collision>
 				<origin rpy="0 0 0" xyz="0 0 0" />
 				<geometry>
-					<mesh filename="package://$(find doosan_urdf)/meshes/h2515_collision/H2515_4_0.dae" scale="0.001 0.001 0.001" />
+					<mesh filename="package://doosan_urdf/meshes/h2515_collision/H2515_4_0.dae" scale="0.001 0.001 0.001" />
 				</geometry>
 			</collision>
 			<visual>
 				<origin rpy="0 0 0" xyz="0 0 0" />
 				<geometry>
-					<mesh filename="package://$(find doosan_urdf)/meshes/h2515_white/H2515_4_0.dae" scale="0.001 0.001 0.001" />
+					<mesh filename="package://doosan_urdf/meshes/h2515_white/H2515_4_0.dae" scale="0.001 0.001 0.001" />
 				</geometry>
 			</visual>
 			<collision>
 				<origin rpy="0 0 0" xyz="0 0 0" />
 				<geometry>
-					<mesh filename="package://$(find doosan_urdf)/meshes/h2515_collision/H2515_4_1.dae" scale="0.001 0.001 0.001" />
+					<mesh filename="package://doosan_urdf/meshes/h2515_collision/H2515_4_1.dae" scale="0.001 0.001 0.001" />
 				</geometry>
 			</collision>
 			<visual>
 				<origin rpy="0 0 0" xyz="0 0 0" />
 				<geometry>
-					<mesh filename="package://$(find doosan_urdf)/meshes/h2515_white/H2515_4_1.dae" scale="0.001 0.001 0.001" />
+					<mesh filename="package://doosan_urdf/meshes/h2515_white/H2515_4_1.dae" scale="0.001 0.001 0.001" />
 				</geometry>
 			</visual>
 		</link>
@@ -199,13 +199,13 @@
             <collision>
 				<origin rpy="0 0 0" xyz="0 0 0" />
 				<geometry>
-					<mesh filename="package://$(find doosan_urdf)/meshes/h2515_collision/H2515_5_0.dae" scale="0.001 0.001 0.001" />
+					<mesh filename="package://doosan_urdf/meshes/h2515_collision/H2515_5_0.dae" scale="0.001 0.001 0.001" />
 				</geometry>
 			</collision>
 			<visual>
 				<origin rpy="0 0 0" xyz="0 0 0" />
 				<geometry>
-					<mesh filename="package://$(find doosan_urdf)/meshes/h2515_white/H2515_5_0.dae" scale="0.001 0.001 0.001" />
+					<mesh filename="package://doosan_urdf/meshes/h2515_white/H2515_5_0.dae" scale="0.001 0.001 0.001" />
 				</geometry>
 			</visual>
 		</link>
@@ -229,13 +229,13 @@
 			<collision>
 				<origin rpy="0 0 0" xyz="0 0 0" />
 				<geometry>
-					<mesh filename="package://$(find doosan_urdf)/meshes/h2515_collision/H2515_6_0.dae" scale="0.001 0.001 0.001" />
+					<mesh filename="package://doosan_urdf/meshes/h2515_collision/H2515_6_0.dae" scale="0.001 0.001 0.001" />
 				</geometry>
 			</collision>
 			<visual>
 				<origin rpy="0 0 0" xyz="0 0 0" />
 				<geometry>
-					<mesh filename="package://$(find doosan_urdf)/meshes/h2515_white/H2515_6_0.dae" scale="0.001 0.001 0.001" />
+					<mesh filename="package://doosan_urdf/meshes/h2515_white/H2515_6_0.dae" scale="0.001 0.001 0.001" />
 				</geometry>
 			</visual>
 		</link>
