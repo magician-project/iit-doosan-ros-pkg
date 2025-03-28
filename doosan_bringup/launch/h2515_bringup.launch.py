@@ -113,7 +113,7 @@ def launch_setup(context, *args, **kwargs):
     ###
     xbot_core_arguments = [
         "--config",
-        os.path.join(get_package_share_path("doosan_xbot2_config"), "h2515_xbot.yaml"),
+        os.path.join(get_package_share_path("doosan_xbot2_config"), "conf", "h2515_xbot.yaml"),
     ]
     if simulator == "true":
         xbot_core_arguments += ["--simtime"]
@@ -128,8 +128,7 @@ def launch_setup(context, *args, **kwargs):
     cartesio_launch_file = IncludeLaunchDescription(
         AnyLaunchDescriptionSource(
             launch_file_path=os.path.join(cartesio_share, "launch", "h2515.launch"),
-        ),
-        condition=IfCondition(with_xbot),
+        )
     )
     cartesio_delayed = TimerAction(
         period=3.0,
