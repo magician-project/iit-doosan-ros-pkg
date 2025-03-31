@@ -1,0 +1,14 @@
+<robot name="car fender">
+    <link name="right_back_door">
+        <visual>
+            <geometry>
+                <mesh filename="package://doosan_gazebo/world/meshes/right_back_door.stl" />
+            </geometry>
+            <material name="iron">
+                <color rgba="0.6 0.6 0.6 1.0"/>
+            </material>
+        </visual>
+    </link>
+
+</robot>
+
