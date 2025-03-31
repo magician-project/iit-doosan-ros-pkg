@@ -40,6 +40,15 @@
       <origin rpy = "0 0 1.571" xyz = "0 0 0.17872" />
     </joint>
   </xacro:if>
+  <xacro:if value="${gr == 'tactile'}">
+    <xacro:include filename="$(find doosan_urdf)/urdf/tactile_sensor.xacro" />
+    <xacro:tactile_sensor/>
+    <joint name = "tcp_joint" type="fixed">
+      <parent link="tactile_sensor_link"/>
+      <child link="tcp"/>
+      <origin rpy = "1.57 0 0" xyz = "0 -0.026 0" />
+    </joint>
+  </xacro:if>
   <link name = "tcp"></link>
 
   <link name="world"/>

@@ -36,6 +36,9 @@
         <disable_collisions link1="link_6" link2="tool_link" reason="Never" />
         <disable_collisions link1="link_5" link2="tool_link" reason="Adjacent" />
     </xacro:if>
+    <xacro:if value="${gr == 'tactile'}">
+        <disable_collisions link1="link_6" link2="tactile_sensor_link" reason="Adjacent" />
+    </xacro:if>
 
     
 </robot>
