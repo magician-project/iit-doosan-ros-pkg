@@ -45,7 +45,7 @@ def launch_setup(context, *args, **kwargs):
     rviz_config = LaunchConfiguration("rviz_config").perform(context)
     simulator = LaunchConfiguration("simulator").perform(context)
     with_xbot = LaunchConfiguration("xbot").perform(context)
-
+    component = LaunchConfiguration("component", default="right_back_door").perform(context)
     use_sim_time = (simulator == "true")
 
     ###
@@ -82,8 +82,10 @@ def launch_setup(context, *args, **kwargs):
     ###
     ### SIMULATOR
     ###
+    # component = "right_back_door"
     world_file = os.path.join(
-        get_package_share_path("doosan_gazebo"), "world", "doosan.world"
+        # get_package_share_path("doosan_gazebo"), "world", "doosan.world"
+        get_package_share_path("doosan_gazebo"), "world", f"doosan_{component}.world"
     )
     ignition_simulator_node = IncludeLaunchDescription(
         PythonLaunchDescriptionSource([

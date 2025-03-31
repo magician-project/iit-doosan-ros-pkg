@@ -1,0 +1,14 @@
+<robot name="car fender">
+    <link name="left_back_fender">
+        <visual>
+            <geometry>
+                <mesh filename="package://world/mesh/left_back_fender.stl" />
+            </geometry>
+            <material name="iron">
+                <color rgba="0.6 0.6 0.6 1.0"/>
+            </material>
+        </visual>
+    </link>
+
+</robot>
+
