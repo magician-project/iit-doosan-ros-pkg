@@ -162,7 +162,8 @@ def launch_setup(context, *args, **kwargs):
             )
         )
         nodes_to_start += [
-            xbot_core,  # cartesio_delayed_on_spawn,
+            xbot_core,
+            cartesio_delayed,
         ]
     else:
         nodes_to_start += [
