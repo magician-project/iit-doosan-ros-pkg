@@ -149,7 +149,7 @@ def launch_setup(context, *args, **kwargs):
         )
     )
     cartesio_delayed = TimerAction(
-        period=3.0,
+        period=15.0,
         actions=[cartesio_launch_file],
     )
 
