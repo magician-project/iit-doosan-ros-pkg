@@ -1,0 +1,59 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="car_fender">
+    <xacro:property name="iron_color" value="0.6 0.6 0.6 1.0" />
+    
+    <xacro:arg name="x" default="-0.27911485067348685"/>
+    <xacro:arg name="y" default="-0.8776743975009139"/>
+    <xacro:arg name="z" default="-0.7724269023504743"/>
+    <xacro:arg name="R" default="1.4616772567938894"/>
+    <xacro:arg name="P" default="-0.05097536634865674"/>
+    <xacro:arg name="Y" default="1.624350283020874"/>
+    
+    <link name="world"/>
+    
+    <!-- This is now our main link -->
+    <link name="base_link"/>
+    
+    <!-- Connect base_link to world with specified position/orientation -->
+    <joint name="world_to_base" type="fixed">
+        <parent link="world"/>
+        <child link="base_link"/>
+        <origin xyz="$(arg x) $(arg y) $(arg z)" rpy="$(arg R) $(arg P) $(arg Y)"/>
+    </joint>
+
+    <link name="right_back_door">
+        <inertial>
+            <mass value="5.0"/>
+            <origin xyz="0 0 0" rpy="0 0 0"/>
+            <!-- <origin xyz="$(arg x) $(arg y) $(arg z)" rpy="$(arg R) $(arg P) $(arg Y)"/> -->
+            <inertia ixx="0.1" ixy="0" ixz="0" iyy="0.1" iyz="0" izz="0.1"/>
+        </inertial>
+        <visual>
+            <geometry>
+                <mesh filename="$(find doosan_urdf)/meshes/right_back_door.stl" />
+                <!-- <mesh filename="$(find doosan_urdf)/world/meshes/right_back_door.stl" /> -->
+            </geometry>
+            <material name="iron">
+                <color rgba="${iron_color}"/>
+            </material>
+        </visual>
+        <collision>
+            <geometry>
+                <mesh filename="$(find doosan_urdf)/meshes/right_back_door.stl" />
+            </geometry>
+        </collision>
+    </link>
+    
+    <joint name="base_to_right_back_door" type="fixed">
+        <parent link="base_link"/>
+        <child link="right_back_door"/>
+        <origin xyz="0 0 0" rpy="0 0 0"/>
+    </joint>
+    
+    <gazebo>
+        <static>true</static>
+        <plugin filename="libgazebo_ros_state.so" name="gazebo_ros_state">
+            <update_rate>1.0</update_rate>
+        </plugin>
+    </gazebo>
+</robot>
