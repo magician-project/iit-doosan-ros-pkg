@@ -12,26 +12,25 @@
     <link name="world"/>
     
     <!-- This is now our main link -->
-    <link name="base_link"/>
+    <!-- <link name="base_link"/> -->
     
     <!-- Connect base_link to world with specified position/orientation -->
-    <joint name="world_to_base" type="fixed">
-        <parent link="world"/>
-        <child link="base_link"/>
-        <origin xyz="$(arg x) $(arg y) $(arg z)" rpy="$(arg R) $(arg P) $(arg Y)"/>
-    </joint>
+    <!-- <joint name="world_to_base" type="fixed"> -->
+        <!-- <parent link="world"/> -->
+        <!-- <child link="base_link"/> -->
+        <!-- <origin xyz="0 0 0" rpy="0 0 0"/> -->
+    <!-- </joint> -->
 
     <link name="right_back_door">
         <inertial>
             <mass value="5.0"/>
-            <origin xyz="0 0 0" rpy="0 0 0"/>
             <!-- <origin xyz="$(arg x) $(arg y) $(arg z)" rpy="$(arg R) $(arg P) $(arg Y)"/> -->
+            <origin xyz="0 0 0" rpy="0 0 0"/>
             <inertia ixx="0.1" ixy="0" ixz="0" iyy="0.1" iyz="0" izz="0.1"/>
         </inertial>
         <visual>
             <geometry>
-                <mesh filename="$(find doosan_urdf)/meshes/right_back_door.stl" />
-                <!-- <mesh filename="$(find doosan_urdf)/world/meshes/right_back_door.stl" /> -->
+                <mesh filename="file://$(find doosan_urdf)/meshes/right_back_door.stl"/>
             </geometry>
             <material name="iron">
                 <color rgba="${iron_color}"/>
@@ -39,15 +38,15 @@
         </visual>
         <collision>
             <geometry>
-                <mesh filename="$(find doosan_urdf)/meshes/right_back_door.stl" />
+                <mesh filename="file://$(find doosan_urdf)/meshes/right_back_door.stl" />
             </geometry>
         </collision>
     </link>
     
     <joint name="base_to_right_back_door" type="fixed">
-        <parent link="base_link"/>
+        <parent link="world"/>
         <child link="right_back_door"/>
-        <origin xyz="0 0 0" rpy="0 0 0"/>
+        <origin xyz="$(arg x) $(arg y) $(arg z)" rpy="$(arg R) $(arg P) $(arg Y)"/>
     </joint>
     
     <gazebo>
