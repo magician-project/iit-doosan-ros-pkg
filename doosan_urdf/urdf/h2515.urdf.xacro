@@ -30,26 +30,21 @@
       <child link="tcp"/>
       <origin rpy = "0 0 0" xyz = "0 0 0" />
     </joint>
+    <link name = "tcp"></link>
   </xacro:if>
   <xacro:if value="${gr == 'dewalt'}">
-    <xacro:include filename="$(find doosan_urdf)/urdf/macro.tool.xacro" />
+    <xacro:include filename="$(find doosan_urdf)/urdf/dewalt_sander.xacro" />
     <xacro:dewalt/>
-    <joint name = "tcp_joint" type="fixed">
-      <parent link="tool_link"/>
-      <child link="tcp"/>
-      <origin rpy = "0 0 1.571" xyz = "0 0 0.17872" />
-    </joint>
   </xacro:if>
   <xacro:if value="${gr == 'tactile'}">
     <xacro:include filename="$(find doosan_urdf)/urdf/tactile_sensor.xacro" />
     <xacro:tactile_sensor/>
-    <joint name = "tcp_joint" type="fixed">
-      <parent link="tactile_sensor_link"/>
-      <child link="tcp"/>
-      <origin rpy = "1.57 0 0" xyz = "0 -0.026 0" />
-    </joint>
   </xacro:if>
-  <link name = "tcp"></link>
+  <xacro:if value="${gr == 'vision'}">
+    <xacro:include filename="$(find doosan_urdf)/urdf/vision_sensor.xacro" />
+    <xacro:vision_sensor/>
+  </xacro:if>
+
 
   <link name="world"/>
 

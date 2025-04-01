@@ -29,5 +29,11 @@
                 </material>  
             </visual>		
         </link>
+        <joint name = "tcp_joint" type="fixed">
+            <parent link="tactile_sensor_link"/>
+            <child link="tcp"/>
+            <origin rpy = "1.57 0 0" xyz = "0 -0.026 0" />
+        </joint>
+        <link name = "tcp"></link>
     </xacro:macro>
 </robot>

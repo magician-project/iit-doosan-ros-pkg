@@ -1,0 +1,39 @@
+<?xml version="1.0"?>
+<robot name="vision_sensor" xmlns:xacro="http://www.ros.org/wiki/xacro">
+    <xacro:macro name="vision_sensor">
+        <joint name = "vision_sensor_joint" type="fixed">
+            <parent link="link_6"/>
+            <child link="vision_sensor_link"/>
+            <origin rpy = "3.14159 0 0" xyz = "0 0 0.475" />
+        </joint>
+        <link name = "vision_sensor_link">
+            <inertial>
+                <mass value="1.814"/>
+                <origin xyz="0 0 0"/>
+                <inertia ixx="0.0001" ixy="0" ixz="0" 
+                            iyy="0.0001" iyz="0.0" izz="0.0001"/>
+            </inertial>     
+            <collision>
+                <origin rpy="0 0 0" xyz="0 0 0"/>
+                <geometry>
+                    <mesh filename="file://$(find doosan_urdf)/meshes/vision_sensor/polarshadow.stl" scale="0.001 0.001 0.001"/>
+                </geometry>
+            </collision>
+            <visual>
+                <origin rpy="0 0 0" xyz="0 0 0"/>
+                <geometry>
+                    <mesh filename="file://$(find doosan_urdf)/meshes/vision_sensor/polarshadow.stl" scale="0.001 0.001 0.001"/>
+                </geometry>
+                <material name = "vision_color">
+                    <color rgba = "0.284 0.947 0.251 1.0"/>       
+                </material>  
+            </visual>		
+        </link>
+        <joint name = "tcp_joint" type="fixed">
+            <parent link="vision_sensor_link"/>
+            <child link="tcp"/>
+            <origin rpy = "-3.14159 0 0" xyz = "0 0 0" />
+        </joint>
+        <link name = "tcp"></link>
+    </xacro:macro>
+</robot>
