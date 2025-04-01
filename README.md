@@ -42,7 +42,7 @@ Check [docker folder](docker)
 
 ## How to setup
 - Select a xbot config file:
-  `set_xbot2_config ~/ros_ws/src/iit-doosan-ros-pkg/doosan_xbot2_config/h2515_xbot.yaml`  
+  `set_xbot2_config ~/ros_ws/src/iit-doosan-ros-pkg/doosan_xbot2_config/conf/h2515_xbot.yaml`  
   Choose the end-effector by passing the 'gripper' argument to urdf.xacro and srdf.xacro at the top of such config file, such as 
   ```yaml
   urdf: xacro $(ros2 pkg prefix --share doosan_urdf)/urdf/h2515.urdf.xacro gripper:=dewalt
