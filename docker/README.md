@@ -1,7 +1,6 @@
 # Docker Instruction 
 
 ## Ubuntu 22 + ROS2 Humble + XBot2 + Cartesio + Doosan Models
-*TODO* almost there...
 
 ### Build cointaner
 - `cd` in this folder
