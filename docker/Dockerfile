@@ -40,15 +40,18 @@ RUN sudo apt-get update && sudo apt-get install -y \
 
 
 # Install xbot binaries
-RUN sudo sh -c 'echo "deb http://xbot.cloud/xbot2-nightly/ubuntu/$(lsb_release -sc) /" > /etc/apt/sources.list.d/xbot-latest.list'
-    wget -q -O - http://xbot.cloud/xbot2-nightly/ubuntu/KEY.gpg | sudo apt-key add -
-    sudo apt update
-    sudo apt install xbot2_desktop_full
+RUN cd ~ && mkdir deb && cd deb && \
+    wget -r -np -nH --cut-dirs=1 -R "index.html*" http://xbot.cloud/magician-deb/  && \
+    sudo dpkg -i ./*.deb
+
+# source things
+RUN source /opt/ros/humble/setup.bash && \
+    source /opt/xbot/setup.bash
 
 # Clone and build Doosan model
 RUN mkdir -p ~/ros_ws/src && \
     cd ros_ws/src && \
-    git clone https://github.com/magician-project/iit-doosan-ros-pkg $$ \
+    git clone https://github.com/magician-project/iit-doosan-ros-pkg && \
     cd .. && colcon build
 
 WORKDIR /home/user
@@ -56,10 +59,9 @@ WORKDIR /home/user
 SHELL [ "/bin/bash", "-ic" ]
 
 
-
 # source ros and xbot
 RUN echo source /opt/ros/$ROS_DISTRO/setup.bash >> /home/user/.bashrc
-RUN echo source /home/user/ws/install/setup.bash >> /home/user/.bashrc
+RUN echo source /home/user/ros_ws/install/setup.bash >> /home/user/.bashrc
 RUN echo source /opt/xbot/setup.bash >> /home/user/.bashrc
 
 # ros2 configuration (cyclonedds, custom sysctl rules, ...)

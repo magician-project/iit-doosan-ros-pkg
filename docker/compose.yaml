@@ -2,6 +2,8 @@ services:
   dev:
     build: 
       context: .
+    container_name: magician_xbot2
+    working_dir: /home/user
     stdin_open: true
     tty: true 
     privileged: true
@@ -14,10 +16,10 @@ services:
       - TERM=xterm-256color
       - DISPLAY
       - NVIDIA_DRIVER_CAPABILITIES=all
-    deploy:
-      resources:
-        reservations:
-          devices:
-            - driver: nvidia
-              count: 1
-              capabilities: [gpu]
+    # deploy:
+    #   resources:
+    #     reservations:
+    #       devices:
+    #         - driver: nvidia
+    #           count: 1
+    #           capabilities: [gpu]

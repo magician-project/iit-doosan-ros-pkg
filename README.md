@@ -8,15 +8,12 @@ Models for the doosan robot integrated in XBot2 ROS2 version humble
   - `sudo apt install -y ros-humble-moveit-msgs`
 - Install other necessary dependencies:
   - `sudo apt install -y ros-humble-xacro`
-- Install XBot2:
+- Download and install XBot2 debs:
   ```
-  sudo sh -c 'echo "deb http://xbot.cloud/xbot2-nightly/ubuntu/$(lsb_release -sc) /" > /etc/apt/sources.list.d/xbot-latest.list'
-  wget -q -O - http://xbot.cloud/xbot2-nightly/ubuntu/KEY.gpg | sudo apt-key add -
-  sudo apt update
-  sudo apt install xbot2_desktop_full
+  cd ~ && mkdir deb && cd deb
+  wget -r -np -nH --cut-dirs=1 -R "index.html*" http://xbot.cloud/magician-deb/
+  sudo dpkg -i ./*.deb
   ```
-- Install XBot2 GUI 
-  *TODO*
 - Clone this repo, models and meshes are here so no need for the official doosan robot repo:
   ```
   mkdir -p ~/ros_ws/src && cd ~/ros_ws/src
@@ -35,6 +32,7 @@ Models for the doosan robot integrated in XBot2 ROS2 version humble
   echo source /opt/ros/$ROS_DISTRO/setup.bash >> ~/.bashrc
   echo source ~/ros_ws/install/setup.bash >> ~/.bashrc
   echo source /opt/xbot/setup.sh >> ~/.bashrc
+  source ~/.bashrc
   ```
 
 ### Docker Version

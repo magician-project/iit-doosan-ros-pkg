@@ -3,11 +3,12 @@
 ## Ubuntu 22 + ROS2 Humble + XBot2 + Cartesio + Doosan Models
 
 ### Build cointaner
-- `cd` in this folder
+- `cd` in this (docker) folder
 - `docker compose build`
 
-### Attach a terminal
-`docker exec -it docker-dev-1 /bin/bash`
+### Run Container
+- `cd` in this (docker) folder
+- `docker compose up -d`
 
-
-
+### Enter Container 
+- `docker exec -it magician_xbot2 bash`
