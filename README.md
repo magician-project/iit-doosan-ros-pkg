@@ -11,7 +11,7 @@ Models for the doosan robot integrated in XBot2 ROS2 version humble
 - Download and install XBot2 debs:
   ```
   cd ~ && mkdir deb && cd deb
-  wget -r -np -nH --cut-dirs=1 -R "index.html*" http://xbot.cloud/magician-deb/
+  wget -r -np -nH --cut-dirs=1 -R "index.html*" http://xbot.cloud/magician-deb/upload
   sudo dpkg -i ./*.deb
   ```
 - Clone this repo, models and meshes are here so no need for the official doosan robot repo:
@@ -49,7 +49,7 @@ Check [docker folder](docker)
 
 
 ## How to Use
-*Be sure to have sourced xbot, ros, and ros_ws workspace, put them the bashrc for convenience*
+*Be sure to have sourced ros, ros_ws, and xbot (in this order) before running in each terminal. You can put them the bashrc for convenience*
 
 ### RViz only (no dynamic)
 1) Terminal 1: `ros2 launch doosan_urdf h2515.launch`

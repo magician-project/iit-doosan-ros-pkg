@@ -41,18 +41,18 @@ RUN sudo apt-get update && sudo apt-get install -y \
 
 # Install xbot binaries
 RUN cd ~ && mkdir deb && cd deb && \
-    wget -r -np -nH --cut-dirs=1 -R "index.html*" http://xbot.cloud/magician-deb/  && \
-    sudo dpkg -i ./*.deb
+    wget -r -np -nH --cut-dirs=1 -R "index.html*" http://xbot.cloud/magician-deb/upload  && \
+    sudo dpkg -i ./upload/*.deb
 
-# source things
-RUN source /opt/ros/humble/setup.bash && \
-    source /opt/xbot/setup.bash
+# source does not work, we do not need anyway since private repo can not be cloned here, it must be done after composing the docker
+# RUN source /opt/ros/humble/setup.bash && \
+#     source /opt/xbot/setup.bash
 
-# Clone and build Doosan model
-RUN mkdir -p ~/ros_ws/src && \
-    cd ros_ws/src && \
-    git clone https://github.com/magician-project/iit-doosan-ros-pkg && \
-    cd .. && colcon build
+# # Clone and build Doosan model
+# RUN mkdir -p ~/ros_ws/src && \
+#     cd ros_ws/src && \
+#     git clone https://github.com/magician-project/iit-doosan-ros-pkg && \
+#     cd .. && colcon build
 
 WORKDIR /home/user
 
@@ -62,7 +62,7 @@ SHELL [ "/bin/bash", "-ic" ]
 # source ros and xbot
 RUN echo source /opt/ros/$ROS_DISTRO/setup.bash >> /home/user/.bashrc
 RUN echo source /home/user/ros_ws/install/setup.bash >> /home/user/.bashrc
-RUN echo source /opt/xbot/setup.bash >> /home/user/.bashrc
+RUN echo source /opt/xbot/setup.sh >> /home/user/.bashrc
 
 # ros2 configuration (cyclonedds, custom sysctl rules, ...)
 #RUN echo "export RMW_IMPLEMENTATION=rmw_cyclonedds_cpp" >> /home/user/.bashrc
