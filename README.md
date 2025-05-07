@@ -12,7 +12,7 @@ Models for the doosan robot integrated in XBot2 ROS2 version humble
   ```
   cd ~ && mkdir deb && cd deb
   wget -r -np -nH --cut-dirs=1 -R "index.html*" http://xbot.cloud/magician-deb/upload
-  sudo dpkg -i ./*.deb
+  sudo dpkg -i ./upload/*.deb
   ```
 - Clone this repo, models and meshes are here so no need for the official doosan robot repo:
   ```

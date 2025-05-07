@@ -10,6 +10,9 @@
 - `cd` in this (docker) folder
 - `docker compose up -d`
 
+### Enter Container 
+- `docker exec -it magician_xbot2 bash`
+
 #### First time run
 If this is first time running, you want to clone the doosan model repo:
 - Clone this repo, models and meshes are here so no need for the official doosan robot repo:
@@ -25,6 +28,3 @@ If this is first time running, you want to clone the doosan model repo:
   cd ~/ros_ws
   colcon build
   ```
-
-### Enter Container 
-- `docker exec -it magician_xbot2 bash`
