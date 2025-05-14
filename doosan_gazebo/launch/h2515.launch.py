@@ -1,6 +1,8 @@
 import os
-from ament_index_python.packages import get_package_share_directory
-
+from ament_index_python.packages import (
+    get_package_share_directory,
+    get_package_prefix,
+)
 from launch import LaunchDescription
 from launch.actions import (
     DeclareLaunchArgument,
@@ -18,6 +20,15 @@ import xacro
 
 
 def generate_launch_description():
+
+    #add path for robot meshes
+    MDL_ENV_VAR = "IGN_GAZEBO_RESOURCE_PATH"
+    urdf_pkg_share = os.path.join(get_package_prefix("doosan_urdf"), "share")
+
+    if MDL_ENV_VAR in os.environ:
+        os.environ[MDL_ENV_VAR] += ":" + urdf_pkg_share
+    else:
+        os.environ[MDL_ENV_VAR] = urdf_pkg_share
 
     # External args
     color_arg = DeclareLaunchArgument("color", default_value="blue")
