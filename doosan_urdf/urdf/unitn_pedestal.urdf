@@ -1,0 +1,31 @@
+<?xml version="1.0" ?>
+<robot name="unitn_pedestal">
+
+    <link name="pedestal"/>
+    <link name="pedestal_visual">
+        <visual>
+            <geometry>
+                <mesh filename="package://doosan_urdf/meshes/unitn_pedestal.stl" scale="0.001 0.001 0.001"/>
+            </geometry>
+    <material name="pedestal">
+        <color rgba="0.047 0.271 0.659 1.0"/>
+    </material>
+        </visual>
+    </link>
+
+    <link name="pedestal_robot_base"/>
+
+    <joint name="pedestal_to_pedestal_base" type="fixed">
+        <origin rpy="-1.5707 0.0 0.0" xyz="-0.653469 0.402631 0.296443"/>
+        <parent link="pedestal_visual"/>
+        <child link="pedestal_robot_base"/>
+    </joint>
+
+    <joint name="pedestal_to_visual" type="fixed">
+        <!-- <origin rpy="1.5707 0.0 0.0" xyz="1.160 0.383 0.846"/> -->
+        <origin rpy="1.5707 0.0 0.0" xyz="1.160 0.846 0.383"/>
+        <parent link="pedestal"/>
+        <child link="pedestal_visual"/>
+    </joint>
+
+</robot>

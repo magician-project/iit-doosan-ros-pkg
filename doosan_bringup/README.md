@@ -17,7 +17,7 @@ The behavior of the file can be customized with the following list of launch arg
 - `gripper` (type: string, default value: `dewalt`): gripper mounted at the end-effector of the robot. 
   Possible values are `dewalt` or `none`;
 - `setup` (type: string, default value: `iit`): 
-  environment in which the robot which shall be used to spawn the robot into. Possible values are `none` or `iit`;
+  environment in which the robot which shall be used to spawn the robot into. Possible values are `none`, `iit`, or `unitn`;
 - `simulator` (type: boolean, default value: `true`): 
   if on, the robot is loaded in the Gazebo ignition simulation environment. Otherwise, a connection on the real robot is assumed;
 - `rviz` (type: boolean, default value: `true`): 

@@ -69,6 +69,23 @@
     </joint>
   </xacro:if>
 
+  <xacro:if value="${stp == 'unitn'}">
+    <xacro:include filename="$(find doosan_urdf)/urdf/unitn_pedestal.urdf" />
+
+    <joint name="world_fixed" type="fixed">
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <parent link="world"/>
+      <child link="pedestal"/>
+    </joint>
+
+    <joint name="pedestal_to_base" type="fixed">
+      <origin xyz="0 0 0" rpy="0 0 ${pi/2}"/>
+      <parent link="pedestal_robot_base"/>
+      <child link="base_link"/>
+    </joint>
+  </xacro:if>
+
+
 
 </robot>
 

@@ -31,6 +31,7 @@ AVAILABLE_GRIPPERS = [
 ]
 AVAILABLE_SETUPS = [
     "iit",
+    "unitn",
     "none",
 ]
 
