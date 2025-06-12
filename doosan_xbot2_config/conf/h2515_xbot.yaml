@@ -1,6 +1,6 @@
 XBotInterface:
-  urdf: xacro $(ros2 pkg prefix --share doosan_urdf)/urdf/h2515.urdf.xacro setup:=iit gripper:=dewalt
-  srdf: xacro $(ros2 pkg prefix --share doosan_srdf)/srdf/h2515.srdf.xacro gripper:=dewalt
+  urdf: xacro $(ros2 pkg prefix --share doosan_urdf)/urdf/h2515.urdf.xacro setup:=iit gripper:=ati_mini58
+  srdf: xacro $(ros2 pkg prefix --share doosan_srdf)/srdf/h2515.srdf.xacro gripper:=ati_mini58
 
 ModelInterface:
   model_type: pin
