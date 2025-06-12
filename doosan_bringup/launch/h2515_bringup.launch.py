@@ -137,6 +137,10 @@ def launch_setup(context, *args, **kwargs):
         period=3.0,
         actions=[cartesio_launch_file],
     )
+    xbot_delayed = TimerAction(
+        period=2.0,
+        actions=[xbot_core],
+    )
 
     if simulator == "true":
         cartesio_delayed_on_spawn = RegisterEventHandler(
@@ -147,11 +151,13 @@ def launch_setup(context, *args, **kwargs):
             )
         )
         nodes_to_start += [
-            xbot_core,  # cartesio_delayed_on_spawn,
+            # xbot_core,  # cartesio_delayed_on_spawn,
+            xbot_delayed,  # cartesio_delayed_on_spawn,
         ]
     else:
         nodes_to_start += [
-            xbot_core,  # cartesio_delayed,
+            # xbot_core,  # cartesio_delayed,
+            xbot_delayed,  # cartesio_delayed_on_spawn,
         ]
 
     ###
