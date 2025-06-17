@@ -37,9 +37,9 @@
         <link name = "tcp"></link>
         <joint name = "tactile_sensor_sensing_frame_joint" type="fixed">
             <parent link="tactile_sensor_link"/>
-            <child link="tactile_sensor_sensing_frame"/>
+            <child link="ft_sensing_frame"/>
             <origin rpy = "1.57 0 0" xyz = "0 -0.0285 0" />
         </joint>
-        <link name = "tactile_sensor_sensing_frame"></link>
+        <link name = "ft_sensing_frame"></link>
     </xacro:macro>
 </robot>

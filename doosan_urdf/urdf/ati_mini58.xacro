@@ -42,9 +42,9 @@
         <link name = "tcp"></link>
         <joint name = "${name}_sensing_frame_joint" type="fixed">
             <parent link="${name}_link"/>
-            <child link="${name}_sensing_frame"/>
+            <child link="ft_sensing_frame"/>
             <origin rpy = "3.14159265359 0 0" xyz = "0 0 0.02" />
         </joint>
-        <link name = "${name}_sensing_frame"></link>
+        <link name = "ft_sensing_frame"></link>
     </xacro:macro>
 </robot>
