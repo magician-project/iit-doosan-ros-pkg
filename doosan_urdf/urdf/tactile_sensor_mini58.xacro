@@ -1,0 +1,78 @@
+<?xml version="1.0"?>
+<robot name="tactile_sensor_mini58" xmlns:xacro="http://www.ros.org/wiki/xacro">
+    <xacro:macro name="tactile_sensor_mini58">
+        <!--tool_joint-->
+        <joint name = "ati_mini58_joint" type="fixed">
+            <parent link="link_6"/>
+            <child link="ati_mini58_link"/>
+            <origin xyz="0 0 0" rpy="0 0 0"/> 
+        </joint>
+        <link name = "ati_mini58_link">
+            <inertial>
+                <mass value="0.62"/>
+                <origin xyz="0 0 0" rpy="0 0 0"/> 
+                <inertia
+                    ixx="0.0007350993" ixy="-0.000000040447"  ixz="0.000000437801" 
+                    iyy="0.0007321633" iyz="0.00000027" 
+                    izz="0.0008609344" />
+            </inertial>     
+            <collision>
+                <origin rpy="0 0 0" xyz="0 0 0"/>
+                <geometry>
+                    <mesh filename="package://doosan_urdf/meshes/ati_sensors/ati_mini58_with_flange.dae" scale="0.001 0.001 0.001"/>
+                </geometry>
+            </collision>
+            <visual>
+                <origin rpy="0 0 0" xyz="0 0 0"/>
+                <geometry>
+                    <mesh filename="package://doosan_urdf/meshes/ati_sensors/ati_mini58_with_flange.dae" scale="0.001 0.001 0.001"/>
+                </geometry>
+                <material name = "ati_mini58_silver">
+                    <color rgba = "1.0 0.769 0.769 0.769"/>       
+                </material>  
+            </visual>			
+        </link>
+        <joint name = "ati_mini58_sensing_frame_joint" type="fixed">
+            <parent link="ati_mini58_link"/>
+            <child link="ft_sensing_frame"/>
+            <origin rpy = "3.14159265359 0 0" xyz = "0 0 0.02" />
+        </joint>
+        <link name = "ft_sensing_frame"></link>
+
+
+        <joint name = "tactile_sensor_joint" type="fixed">
+            <parent link="ati_mini58_link"/>
+            <child link="tactile_sensor_link"/>
+            <origin rpy = "-1.57 0 0" xyz = "0 0 ${0.02 + 0.015 + 0.05}" />
+        </joint>
+        <link name = "tactile_sensor_link">
+            <inertial>
+                <mass value="0.100"/>
+                <origin xyz="0 0 0"/>
+                <inertia ixx="0.0001" ixy="0" ixz="0" 
+                            iyy="0.0001" iyz="0.0" izz="0.0001"/>
+            </inertial>     
+            <collision>
+                <origin rpy="0 0 0" xyz="0 0 0"/>
+                <geometry>
+                    <mesh filename="package://doosan_urdf/meshes/tactile_sensor/TactileModel.stl" scale="0.001 0.001 0.001"/>
+                </geometry>
+            </collision>
+            <visual>
+                <origin rpy="0 0 0" xyz="0 0 0"/>
+                <geometry>
+                    <mesh filename="package://doosan_urdf/meshes/tactile_sensor/TactileModel.stl" scale="0.001 0.001 0.001"/>
+                </geometry>
+                <material name = "tactile_color">
+                    <color rgba = "0.284 0.447 0.851 1.0"/>       
+                </material>  
+            </visual>		
+        </link>
+        <joint name = "tcp_joint" type="fixed">
+            <parent link="tactile_sensor_link"/>
+            <child link="tcp"/>
+            <origin rpy = "1.57 0 0" xyz = "0 -0.026 0" />
+        </joint>
+        <link name = "tcp"></link>
+    </xacro:macro>
+</robot>

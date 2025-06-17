@@ -39,7 +39,14 @@
     <xacro:if value="${gr == 'tactile'}">
         <disable_collisions link1="link_6" link2="tactile_sensor_link" reason="Adjacent" />
         <disable_collisions link1="link_5" link2="tactile_sensor_link" reason="Never" />
-    </xacro:if>    
+    </xacro:if>
+    <xacro:if value="${gr == 'tactile_mini58'}">
+        <disable_collisions link1="link_6" link2="tactile_sensor_link" reason="Adjacent" />
+        <disable_collisions link1="link_5" link2="tactile_sensor_link" reason="Never" />
+        <disable_collisions link1="link_6" link2="ati_mini58_link" reason="Adjacent" />
+        <disable_collisions link1="link_5" link2="ati_mini58_link" reason="Never" />
+        <disable_collisions link1="ati_mini58_link" link2="tactile_sensor_link" reason="Adjacent" />
+    </xacro:if>      
     <xacro:if value="${gr == 'vision'}">
         <disable_collisions link1="link_6" link2="vision_sensor_link" reason="Adjacent" />
         <disable_collisions link1="link_5" link2="vision_sensor_link" reason="Never" />

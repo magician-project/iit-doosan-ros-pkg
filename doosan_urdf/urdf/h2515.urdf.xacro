@@ -40,6 +40,10 @@
     <xacro:include filename="$(find doosan_urdf)/urdf/tactile_sensor.xacro" />
     <xacro:tactile_sensor/>
   </xacro:if>
+  <xacro:if value="${gr == 'tactile_mini58'}">
+    <xacro:include filename="$(find doosan_urdf)/urdf/tactile_sensor_mini58.xacro" />
+    <xacro:tactile_sensor_mini58/>
+  </xacro:if>
   <xacro:if value="${gr == 'vision'}">
     <xacro:include filename="$(find doosan_urdf)/urdf/vision_sensor.xacro" />
     <xacro:vision_sensor/>
