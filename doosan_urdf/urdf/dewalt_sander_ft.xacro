@@ -21,13 +21,13 @@
             <collision>
                 <origin rpy="0 0 0" xyz="0 0 0"/>
                 <geometry>
-                    <mesh filename="file://$(find doosan_urdf)/meshes/h2515_grinding_tool_collision/doosan_tool_attachment.dae" scale="0.001 0.001 0.001"/>
+                    <mesh filename="package://doosan_urdf/meshes/h2515_grinding_tool_collision/doosan_tool_attachment.dae" scale="0.001 0.001 0.001"/>
                 </geometry>
             </collision>
             <visual>
                 <origin rpy="0 0 0" xyz="0 0 0"/>
                 <geometry>
-                    <mesh filename="file://$(find doosan_urdf)/meshes/h2515_grinding_tool/doosan_tool_attachment.dae" scale="0.001 0.001 0.001"/>
+                    <mesh filename="package://doosan_urdf/meshes/h2515_grinding_tool/doosan_tool_attachment.dae" scale="0.001 0.001 0.001"/>
                 </geometry>
                 <material name = "yellow">
                     <color rgba = "1.0 0.92 0.016 1.0"/>       

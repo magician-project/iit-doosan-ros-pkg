@@ -21,13 +21,13 @@
             <collision>
                 <origin rpy="0 0 0" xyz="0 0 0"/>
                 <geometry>
-                    <mesh filename="file://$(find doosan_urdf)/meshes/ati_sensors/ati_mini58_with_flange.dae" scale="0.001 0.001 0.001"/>
+                    <mesh filename="package://doosan_urdf/meshes/ati_sensors/ati_mini58_with_flange.dae" scale="0.001 0.001 0.001"/>
                 </geometry>
             </collision>
             <visual>
                 <origin rpy="0 0 0" xyz="0 0 0"/>
                 <geometry>
-                    <mesh filename="file://$(find doosan_urdf)/meshes/ati_sensors/ati_mini58_with_flange.dae" scale="0.001 0.001 0.001"/>
+                    <mesh filename="package://doosan_urdf/meshes/ati_sensors/ati_mini58_with_flange.dae" scale="0.001 0.001 0.001"/>
                 </geometry>
                 <material name = "${name}_silver">
                     <color rgba = "1.0 0.769 0.769 0.769"/>       

@@ -22,7 +22,7 @@
             <visual>
                 <origin xyz="0 0 0" rpy="0 0 0"/> 
                 <!-- <geometry>
-                    <mesh filename="file://$(find doosan_urdf)/meshes/ati_sensors/ATI-9105-TW-Mini58-E-X_X.stl"/>
+                    <mesh filename="package://doosan_urdf/meshes/ati_sensors/ATI-9105-TW-Mini58-E-X_X.stl"/>
                 </geometry> -->
                 <geometry>
                     <cylinder length="${height}" radius="${radius}"/>

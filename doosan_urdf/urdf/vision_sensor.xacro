@@ -16,13 +16,13 @@
             <collision>
                 <origin rpy="0 0 0" xyz="0 0 0"/>
                 <geometry>
-                    <mesh filename="file://$(find doosan_urdf)/meshes/vision_sensor/polarshadow.stl" scale="0.001 0.001 0.001"/>
+                    <mesh filename="package://doosan_urdf/meshes/vision_sensor/polarshadow.stl" scale="0.001 0.001 0.001"/>
                 </geometry>
             </collision>
             <visual>
                 <origin rpy="0 0 0" xyz="0 0 0"/>
                 <geometry>
-                    <mesh filename="file://$(find doosan_urdf)/meshes/vision_sensor/polarshadow.stl" scale="0.001 0.001 0.001"/>
+                    <mesh filename="package://doosan_urdf/meshes/vision_sensor/polarshadow.stl" scale="0.001 0.001 0.001"/>
                 </geometry>
                 <material name = "vision_color">
                     <color rgba = "0.284 0.947 0.251 1.0"/>       
