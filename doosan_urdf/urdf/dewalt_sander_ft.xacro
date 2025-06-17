@@ -1,15 +1,15 @@
 <?xml version="1.0"?>
 <!-- This is the file for the Grinding tool that will be attached on to the doosan -->
-<robot name="dewalt" xmlns:xacro="http://www.ros.org/wiki/xacro">
+<robot name="dewalt_ft" xmlns:xacro="http://www.ros.org/wiki/xacro">
   <!-- Define the tool macro -->
-    <xacro:macro name="dewalt" params="parent *origin name:=dewalt ">
+    <xacro:macro name="dewalt_ft">
         <!--tool_joint-->
-        <joint name = "${name}_joint" type="fixed">
-            <parent link="${parent}"/>
-            <child link="${name}_link"/>
-            <xacro:insert_block name="origin" />
+        <joint name = "dewalt_ft_joint" type="fixed">
+            <parent link="link_6"/>
+            <child link="dewalt_ft_link"/>
+            <origin rpy = "0 0 -1.571" xyz = "0 0 0" />
         </joint>
-        <link name = "${name}_link">
+        <link name = "dewalt_ft_link">
             <inertial>
                 <mass value="2.283"/>
                 <origin xyz="-0.027197381 -0.00048674567 0.082216345"/>
@@ -21,7 +21,7 @@
             <collision>
                 <origin rpy="0 0 0" xyz="0 0 0"/>
                 <geometry>
-                    <mesh filename="file://$(find doosan_urdf)/meshes/h2515_grinding_tool/collision/doosan_tool_attachment.dae" scale="0.001 0.001 0.001"/>
+                    <mesh filename="file://$(find doosan_urdf)/meshes/h2515_grinding_tool_collision/doosan_tool_attachment.dae" scale="0.001 0.001 0.001"/>
                 </geometry>
             </collision>
             <visual>
@@ -35,10 +35,17 @@
             </visual>		
         </link>
         <joint name = "tcp_joint" type="fixed">
-            <parent link="${name}_link"/>
+            <parent link="dewalt_ft_link"/>
             <child link="tcp"/>
             <origin rpy = "0 0 1.571" xyz = "0 0 0.17872" />
         </joint>
         <link name = "tcp"></link>
+        <joint name = "dewalt_ft_sensing_frame_joint" type="fixed">
+            <parent link="dewalt_ft_link"/>
+            <child link="ati_mini58_sensing_frame"/>
+            <!-- Sensor is upside down -->
+            <origin rpy = "3.14159265359 0 0" xyz = "0 0 0.02" />
+        </joint>
+        <link name = "ati_mini58_sensing_frame"></link>
     </xacro:macro>
 </robot>

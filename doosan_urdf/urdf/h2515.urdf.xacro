@@ -33,16 +33,8 @@
     <link name = "tcp"></link>
   </xacro:if>
   <xacro:if value="${gr == 'dewalt'}">
-    <xacro:include filename="$(find doosan_urdf)/urdf/dewalt_sander_fake_ft.xacro" />
-    <xacro:dewalt_fake_ft/>
-  </xacro:if>
-  <xacro:if value="${gr == 'dewalt_ft'}">
-    <xacro:include filename="$(find doosan_urdf)/urdf/ati_mini58.xacro" />
-    <xacro:include filename="$(find doosan_urdf)/urdf/dewalt_sander.xacro" />
-    <xacro:ati_mini58 parent="link_6" name="ati_mini58"/>
-    <xacro:dewalt parent="ati_mini58_link" name="dewalt">
-        <origin xyz="0 0 0" rpy="0 0 0"/>
-    </xacro:dewalt>
+    <xacro:include filename="$(find doosan_urdf)/urdf/dewalt_sander_ft.xacro" />
+    <xacro:dewalt_ft/>
   </xacro:if>
   <xacro:if value="${gr == 'tactile'}">
     <xacro:include filename="$(find doosan_urdf)/urdf/tactile_sensor.xacro" />
@@ -54,13 +46,7 @@
   </xacro:if>
   <xacro:if value="${gr == 'ati_mini58'}">
     <xacro:include filename="$(find doosan_urdf)/urdf/ati_mini58.xacro" />
-    <xacro:ati_mini58 parent="link_6" name="ati_mini58" height="0.030"/>
-    <joint name = "tcp_joint" type="fixed">
-      <parent link="ati_mini58_sensing_frame"/>
-      <child link="tcp"/>
-      <origin rpy = "3.14159265359 0 0" xyz = "0 0 -0.030" />
-    </joint>
-    <link name = "tcp"></link>
+    <xacro:ati_mini58 parent="link_6" name="ati_mini58"/>
   </xacro:if>
 
 
