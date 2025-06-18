@@ -69,3 +69,6 @@ Check [docker folder](docker)
 1) `ros2 launch doosan_cartesio h2515.launch #ci_rviz:=true markers:=true`
 
 
+## Examples
+You can find some example code here https://github.com/magician-project/doosan_examples and some more doc about CartesI/O here (ROS1-based) https://advrhumanoids.github.io/CartesianInterface/
+
