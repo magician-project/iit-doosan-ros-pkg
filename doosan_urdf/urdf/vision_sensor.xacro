@@ -8,7 +8,7 @@
         </joint>
         <link name = "vision_sensor_link">
             <inertial>
-                <mass value="1.814"/>
+                <mass value="2.290"/>
                 <origin xyz="0 0 0"/>
                 <inertia ixx="0.0001" ixy="0" ixz="0" 
                             iyy="0.0001" iyz="0.0" izz="0.0001"/>
