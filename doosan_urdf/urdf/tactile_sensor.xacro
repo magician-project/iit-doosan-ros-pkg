@@ -8,7 +8,7 @@
         </joint>
         <link name = "tactile_sensor_link">
             <inertial>
-                <mass value="0.100"/>
+                <mass value="0.490"/>
                 <origin xyz="0 0 0"/>
                 <inertia ixx="0.0001" ixy="0" ixz="0" 
                             iyy="0.0001" iyz="0.0" izz="0.0001"/>
@@ -16,13 +16,13 @@
             <collision>
                 <origin rpy="0 0 0" xyz="0 0 0"/>
                 <geometry>
-                    <mesh filename="file://$(find doosan_urdf)/meshes/tactile_sensor/TactileModel.stl" scale="0.001 0.001 0.001"/>
+                    <mesh filename="package://doosan_urdf/meshes/tactile_sensor/TactileModel.stl" scale="0.001 0.001 0.001"/>
                 </geometry>
             </collision>
             <visual>
                 <origin rpy="0 0 0" xyz="0 0 0"/>
                 <geometry>
-                    <mesh filename="file://$(find doosan_urdf)/meshes/tactile_sensor/TactileModel.stl" scale="0.001 0.001 0.001"/>
+                    <mesh filename="package://doosan_urdf/meshes/tactile_sensor/TactileModel.stl" scale="0.001 0.001 0.001"/>
                 </geometry>
                 <material name = "tactile_color">
                     <color rgba = "0.284 0.447 0.851 1.0"/>       
@@ -35,5 +35,11 @@
             <origin rpy = "1.57 0 0" xyz = "0 -0.026 0" />
         </joint>
         <link name = "tcp"></link>
+        <joint name = "tactile_sensor_sensing_frame_joint" type="fixed">
+            <parent link="tactile_sensor_link"/>
+            <child link="ft_sensing_frame"/>
+            <origin rpy = "1.57 3.14 0" xyz = "0 -0.0285 0" />
+        </joint>
+        <link name = "ft_sensing_frame"></link>
     </xacro:macro>
 </robot>

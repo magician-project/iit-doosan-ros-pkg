@@ -33,16 +33,24 @@
     <link name = "tcp"></link>
   </xacro:if>
   <xacro:if value="${gr == 'dewalt'}">
-    <xacro:include filename="$(find doosan_urdf)/urdf/dewalt_sander.xacro" />
-    <xacro:dewalt/>
+    <xacro:include filename="$(find doosan_urdf)/urdf/dewalt_sander_ft.xacro" />
+    <xacro:dewalt_ft/>
   </xacro:if>
   <xacro:if value="${gr == 'tactile'}">
     <xacro:include filename="$(find doosan_urdf)/urdf/tactile_sensor.xacro" />
     <xacro:tactile_sensor/>
   </xacro:if>
+  <xacro:if value="${gr == 'tactile_mini58'}">
+    <xacro:include filename="$(find doosan_urdf)/urdf/tactile_sensor_mini58.xacro" />
+    <xacro:tactile_sensor_mini58/>
+  </xacro:if>
   <xacro:if value="${gr == 'vision'}">
     <xacro:include filename="$(find doosan_urdf)/urdf/vision_sensor.xacro" />
     <xacro:vision_sensor/>
+  </xacro:if>
+  <xacro:if value="${gr == 'ati_mini58'}">
+    <xacro:include filename="$(find doosan_urdf)/urdf/ati_mini58.xacro" />
+    <xacro:ati_mini58 parent="link_6" name="ati_mini58"/>
   </xacro:if>
 
 
