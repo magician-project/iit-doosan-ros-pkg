@@ -11,7 +11,8 @@
         </joint>
         <link name = "dewalt_ft_link">
             <inertial>
-                <mass value="2.283"/>
+                <!--<mass value="2.283"/> --> <!-- sriram model -->
+                <mass value="3.28"/> <!-- doosan estimation utility -->
                 <origin xyz="-0.027197381 -0.00048674567 0.082216345"/>
                 <inertia ixx="0.00916146" ixy="-0.00007365" ixz="0.00147785" 
                             iyy="0.01315032" iyz="0.00002495" izz="0.00824114"/>
@@ -44,7 +45,9 @@
             <parent link="dewalt_ft_link"/>
             <child link="ft_sensing_frame"/>
             <!-- Sensor is upside down -->
-            <origin rpy = "3.14159265359 0 0" xyz = "0 0 0.02" />
+            <!-- <origin rpy = "3.14159265359 0 0" xyz = "0 0 0.02" /> -->
+            <origin rpy = "0.0 0 0.785" xyz = "0 0 0.02" />
+
         </joint>
         <link name = "ft_sensing_frame"></link>
     </xacro:macro>
