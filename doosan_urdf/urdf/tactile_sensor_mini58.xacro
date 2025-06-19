@@ -35,7 +35,7 @@
         <joint name = "ati_mini58_sensing_frame_joint" type="fixed">
             <parent link="ati_mini58_link"/>
             <child link="ft_sensing_frame"/>
-            <origin rpy = "3.14159265359 0 0" xyz = "0 0 0.02" />
+            <origin rpy = "0.0 0 0.785" xyz = "0 0 0.02" />
         </joint>
         <link name = "ft_sensing_frame"></link>
 
@@ -47,7 +47,7 @@
         </joint>
         <link name = "tactile_sensor_link">
             <inertial>
-                <mass value="0.100"/>
+                <mass value="1.0"/>
                 <origin xyz="0 0 0"/>
                 <inertia ixx="0.0001" ixy="0" ixz="0" 
                             iyy="0.0001" iyz="0.0" izz="0.0001"/>
@@ -71,7 +71,8 @@
         <joint name = "tcp_joint" type="fixed">
             <parent link="tactile_sensor_link"/>
             <child link="tcp"/>
-            <origin rpy = "1.57 0 0" xyz = "0 -0.026 0" />
+            <!-- <origin rpy = "1.57 0 0" xyz = "0 -0.026 0" /> -->
+            <origin rpy = "1.57 0 0" xyz = "0 0.004 0" />
         </joint>
         <link name = "tcp"></link>
     </xacro:macro>
