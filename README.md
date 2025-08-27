@@ -60,6 +60,21 @@ Check [docker folder](docker)
 2) Terminal 2: `xbot2-core --simtime` (*note*: `--hw sim` is the default)
 3) Play the simulation (gazebo gui button) - I am looking for a working way to start it automatically
 
+### Real Robot
+*pilot + embedded, iit setup: lenovo+zotac"
+~~~
+magician@ThinkStation22:~$ alias ssh_doosan
+alias ssh_doosan='ssh -X zotac22@192.168.137.54'
+~~~
+~~~
+zotac22@zotac22 ~ $ get_xbot2_config 
+/home/zotac22/forest_ws/src/doosan_xbot2/doosan_xbot2_hal_config/doosan_xbot2_config.yaml
+~~~
+#### Embedded
+1) Be sure to put right end-effector from the tablet
+2) ~xbot2-core --hw doosan~ Close with with ctrl+c **then** ctrl+4 to save logs correctly
+
+
 ### Optional
 #### GUI
 1) Terminal 1: `xbot2_gui_server`
