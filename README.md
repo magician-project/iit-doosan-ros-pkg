@@ -78,6 +78,7 @@ zotac22@zotac22 ~ $ get_xbot2_config
 - `ros2 launch doosan_urdf h2515.launch`
 - if mesh necessary (after registration) `ros2 launch magician_localisation mesh_spawner.launch.py`
 - home the robot
+- start `cartesio_imp`, from xbot gui or directly with service. **Take care** robot may move. **Do not** send commands directly to xbot with /xbotcore/command topic or from GUI sliders, now you have to communicate only to upper layer: cartesio
 
 
 ### Optional
