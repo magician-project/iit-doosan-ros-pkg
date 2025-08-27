@@ -61,7 +61,7 @@ Check [docker folder](docker)
 3) Play the simulation (gazebo gui button) - I am looking for a working way to start it automatically
 
 ### Real Robot
-*pilot + embedded, iit setup: lenovo+zotac"
+*pilot + embedded, iit setup: lenovo+zotac*
 ~~~
 magician@ThinkStation22:~$ alias ssh_doosan
 alias ssh_doosan='ssh -X zotac22@192.168.137.54'
@@ -73,6 +73,11 @@ zotac22@zotac22 ~ $ get_xbot2_config
 #### Embedded
 1) Be sure to put right end-effector from the tablet
 2) ~xbot2-core --hw doosan~ Close with with ctrl+c **then** ctrl+4 to save logs correctly
+
+#### Pilot
+- `ros2 launch doosan_urdf h2515.launch`
+- if mesh necessary (after registration) `ros2 launch magician_localisation mesh_spawner.launch.py`
+- home the robot
 
 
 ### Optional
