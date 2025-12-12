@@ -1,0 +1,42 @@
+<?xml version="1.0"?>
+<robot name="vision_sensor_metal" xmlns:xacro="http://www.ros.org/wiki/xacro">
+    <xacro:macro name="vision_sensor_metal">
+        <joint name = "vision_sensor_joint" type="fixed">
+            <parent link="link_6"/>
+            <child link="vision_sensor_link"/>
+            <origin rpy = "3.14159 0 0" xyz = "0 0 0.475" />
+        </joint>
+        <link name = "vision_sensor_link">
+            <inertial>
+                <mass value="4.8"/>
+                <origin xyz="0 0 0"/>
+                <inertia ixx="0.0001" ixy="0" ixz="0" 
+                            iyy="0.0001" iyz="0.0" izz="0.0001"/>
+            </inertial>     
+            <collision>
+                <origin rpy="0 0 0" xyz="0 0 0"/>
+                <geometry>
+                    <!-- TODO: put correct mesh -->
+                    <mesh filename="package://doosan_urdf/meshes/vision_sensor/polarshadow.stl" scale="0.001 0.001 0.001"/>
+                </geometry>
+            </collision>
+            <visual>
+                <origin rpy="0 0 0" xyz="0 0 0"/>
+                <geometry>
+                    <!-- TODO: put correct mesh -->
+                    <mesh filename="package://doosan_urdf/meshes/vision_sensor/polarshadow.stl" scale="0.001 0.001 0.001"/>
+                </geometry>
+                <material name = "vision_metal_color">
+                    <color rgba = "0.2 0.3 1.0 1.0"/>       
+                </material>  
+            </visual>		
+        </link>
+        <joint name = "tcp_joint" type="fixed">
+            <parent link="vision_sensor_link"/>
+            <child link="tcp"/>
+            <!-- TODO: correct this according to right mesh -->
+            <origin rpy = "-3.14159 0 0" xyz = "0 0 0.095" />
+        </joint>
+        <link name = "tcp"></link>
+    </xacro:macro>
+</robot>
