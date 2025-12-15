@@ -4,7 +4,7 @@
         <joint name = "vision_sensor_joint" type="fixed">
             <parent link="link_6"/>
             <child link="vision_sensor_link"/>
-            <origin rpy = "3.14159 0 0" xyz = "0 0 0.475" />
+            <origin rpy = "-1.5708 0 0" xyz = "0 0 0.376" />
         </joint>
         <link name = "vision_sensor_link">
             <inertial>
@@ -16,15 +16,13 @@
             <collision>
                 <origin rpy="0 0 0" xyz="0 0 0"/>
                 <geometry>
-                    <!-- TODO: put correct mesh -->
-                    <mesh filename="package://doosan_urdf/meshes/vision_sensor/polarshadow.stl" scale="0.001 0.001 0.001"/>
+                    <mesh filename="package://doosan_urdf/meshes/vision_sensor/polarshadow_metal.stl" scale="0.001 0.001 0.001"/>
                 </geometry>
             </collision>
             <visual>
                 <origin rpy="0 0 0" xyz="0 0 0"/>
                 <geometry>
-                    <!-- TODO: put correct mesh -->
-                    <mesh filename="package://doosan_urdf/meshes/vision_sensor/polarshadow.stl" scale="0.001 0.001 0.001"/>
+                    <mesh filename="package://doosan_urdf/meshes/vision_sensor/polarshadow_metal.stl" scale="0.001 0.001 0.001"/>
                 </geometry>
                 <material name = "vision_metal_color">
                     <color rgba = "0.2 0.3 1.0 1.0"/>       
@@ -34,8 +32,7 @@
         <joint name = "tcp_joint" type="fixed">
             <parent link="vision_sensor_link"/>
             <child link="tcp"/>
-            <!-- TODO: correct this according to right mesh -->
-            <origin rpy = "-3.14159 0 0" xyz = "0 0 0.095" />
+            <origin rpy = "1.5708 0 0" xyz = "0 0 0" />
         </joint>
         <link name = "tcp"></link>
     </xacro:macro>
