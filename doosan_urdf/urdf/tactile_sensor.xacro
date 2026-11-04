@@ -4,7 +4,7 @@
         <joint name = "tactile_sensor_joint" type="fixed">
             <parent link="link_6"/>
             <child link="tactile_sensor_link"/>
-            <origin rpy = "-1.57 0 0" xyz = "0 0 0.02" />
+            <origin rpy = "-1.57 0.0 0.7846" xyz = "0 0 0.02" />
         </joint>
         <link name = "tactile_sensor_link">
             <inertial>
@@ -32,7 +32,7 @@
         <joint name = "tcp_joint" type="fixed">
             <parent link="tactile_sensor_link"/>
             <child link="tcp"/>
-            <origin rpy = "1.57 0 0" xyz = "0 -0.026 0" />
+            <origin rpy = "1.57 3.14 0" xyz = "0 -0.026 0" />
         </joint>
         <link name = "tcp"></link>
         <joint name = "tactile_sensor_sensing_frame_joint" type="fixed">
